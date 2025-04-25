@@ -38,7 +38,7 @@ public class EmployeeRegistrationService implements EmployeeRegistrationServiceI
             return savedDto;
         }
         catch (Exception e) {
-            throw new AppException("Requset failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -52,7 +52,7 @@ public class EmployeeRegistrationService implements EmployeeRegistrationServiceI
             return employeeRegistrationDtoList;
         }
         catch (Exception e) {
-            throw new AppException("Requset failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -76,7 +76,7 @@ public class EmployeeRegistrationService implements EmployeeRegistrationServiceI
             return responseEmployeeRegistrationDto;
         }
         catch (Exception e) {
-            throw new AppException("Requset failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -95,7 +95,7 @@ public class EmployeeRegistrationService implements EmployeeRegistrationServiceI
             return employeeRegistrationMapper.toEmployeeRegistrationDto(optionalEmployeeRegistrationEntity.get());
         }
         catch (Exception e) {
-            throw new AppException("Requset failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

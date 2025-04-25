@@ -20,8 +20,8 @@ public class EmployeeRegistrationEntity {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "calling_name")
-    private String callingName;
+//    @Column(name = "calling_name")
+//    private String callingName;
 
     @Column(name = "nic")
     private String nic;
@@ -29,8 +29,8 @@ public class EmployeeRegistrationEntity {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Column(name = "age")
-    private Integer age;
+//    @Column(name = "age")
+//    private Integer age;
 
     @Column(name = "address")
     private String address;
@@ -44,8 +44,8 @@ public class EmployeeRegistrationEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "emergency_contact")
-    private String emergencyContact;
+//    @Column(name = "emergency_contact")
+//    private String emergencyContact;
 
     @Column(name = "job_role")
     private String jobRole;
@@ -58,15 +58,15 @@ public class EmployeeRegistrationEntity {
         this.id = id;
         this.employeeNumber = employeeNumber;
         this.fullName = fullName;
-        this.callingName = callingName;
+//        this.callingName = callingName;
         this.nic = nic;
         this.birthday = birthday;
-        this.age = age;
+//        this.age = age;
         this.address = address;
         this.contactNumber = contactNumber;
         this.gender = gender;
         this.email = email;
-        this.emergencyContact = emergencyContact;
+//        this.emergencyContact = emergencyContact;
         this.jobRole = jobRole;
     }
 
@@ -94,13 +94,13 @@ public class EmployeeRegistrationEntity {
         this.fullName = fullName;
     }
 
-    public String getCallingName() {
-        return callingName;
-    }
+//    public String getCallingName() {
+//        return callingName;
+//    }
 
-    public void setCallingName(String callingName) {
-        this.callingName = callingName;
-    }
+//    public void setCallingName(String callingName) {
+//        this.callingName = callingName;
+//    }
 
     public String getNic() {
         return nic;
@@ -118,13 +118,13 @@ public class EmployeeRegistrationEntity {
         this.birthday = birthday;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+//    public Integer getAge() {
+//        return age;
+//    }
+//
+//    public void setAge(Integer age) {
+//        this.age = age;
+//    }
 
     public String getAddress() {
         return address;
@@ -158,13 +158,13 @@ public class EmployeeRegistrationEntity {
         this.email = email;
     }
 
-    public String getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
+//    public String getEmergencyContact() {
+//        return emergencyContact;
+//    }
+//
+//    public void setEmergencyContact(String emergencyContact) {
+//        this.emergencyContact = emergencyContact;
+//    }
 
     public String getJobRole() {
         return jobRole;
