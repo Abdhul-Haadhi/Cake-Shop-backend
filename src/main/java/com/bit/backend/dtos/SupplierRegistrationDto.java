@@ -6,7 +6,6 @@ public class SupplierRegistrationDto {
     private long id;
     private String companyName;
     private String businessRegNumber;
-    private String supplierID;
     private String contactPersonName;
     private String contactPersonDesignation;
     private Integer contactPersonPhoneNumber;
@@ -16,11 +15,10 @@ public class SupplierRegistrationDto {
     public SupplierRegistrationDto() {
     }
 
-    public SupplierRegistrationDto(long id, String companyName, String businessRegNumber, String supplierID, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
+    public SupplierRegistrationDto(long id, String companyName, String businessRegNumber, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
         this.id = id;
         this.companyName = companyName;
         this.businessRegNumber = businessRegNumber;
-        this.supplierID = supplierID;
         this.contactPersonName = contactPersonName;
         this.contactPersonDesignation = contactPersonDesignation;
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
@@ -50,14 +48,6 @@ public class SupplierRegistrationDto {
 
     public void setBusinessRegNumber(String businessRegNumber) {
         this.businessRegNumber = businessRegNumber;
-    }
-
-    public String getSupplierID() {
-        return supplierID;
-    }
-
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
     }
 
     public String getContactPersonName() {

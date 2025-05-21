@@ -17,9 +17,6 @@ public class SupplierRegistrationEntity {
     @Column(name = "reg_Number")
     private String businessRegNumber;
 
-    @Column(name = "spplier_Id")
-    private String supplierID;
-
     @Column(name = "contact_Name")
     private String contactPersonName;
 
@@ -39,11 +36,11 @@ public class SupplierRegistrationEntity {
     public SupplierRegistrationEntity() {
     }
 
-    public SupplierRegistrationEntity(Long id, String companyName, String businessRegNumber, String supplierID, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
+    public SupplierRegistrationEntity(Long id, String companyName, String businessRegNumber, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
         this.id = id;
         this.companyName = companyName;
         this.businessRegNumber = businessRegNumber;
-        this.supplierID = supplierID;
+
         this.contactPersonName = contactPersonName;
         this.contactPersonDesignation = contactPersonDesignation;
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
@@ -73,14 +70,6 @@ public class SupplierRegistrationEntity {
 
     public void setBusinessRegNumber(String businessRegNumber) {
         this.businessRegNumber = businessRegNumber;
-    }
-
-    public String getSupplierID() {
-        return supplierID;
-    }
-
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
     }
 
     public String getContactPersonName() {
