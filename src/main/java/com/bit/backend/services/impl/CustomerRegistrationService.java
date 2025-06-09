@@ -25,7 +25,7 @@ public class CustomerRegistrationService implements CustomerRegistrationServiceI
 
 
     @Override
-    public CustomerRegistrationDto addCustomerRegistrationEntry(CustomerRegistrationDto customerRegistrationDto) {
+    public CustomerRegistrationDto addCustomerRegistrationEntity(CustomerRegistrationDto customerRegistrationDto) {
 
         try {
             System.out.println("*******************************");

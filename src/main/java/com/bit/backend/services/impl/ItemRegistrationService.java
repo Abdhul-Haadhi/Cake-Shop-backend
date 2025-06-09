@@ -51,6 +51,7 @@ public class ItemRegistrationService implements ItemRegistrationServiceI {
         }
     }
 
+
     @Override
     public ItemRegistrationDto updateItemRegistration(long id, ItemRegistrationDto itemRegistrationDto) {
         try {

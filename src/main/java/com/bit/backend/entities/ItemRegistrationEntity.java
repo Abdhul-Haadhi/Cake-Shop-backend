@@ -13,42 +13,23 @@ public class ItemRegistrationEntity {
     @Column(name = "item_id")
     private String itemId;
 
-    @Column(name = "item")
-    private String item;
+    @Column(name = "item_name")
+    private String itemName;
 
     @Column(name = "category")
     private String category;
-
-    @Column(name = "unit_quantity")
-    private Integer unitQuantity;
-
-    @Column(name = "supplier_id")
-    private String supplierId;
-
-    @Column(name = "total_cost")
-    private Integer totalCost;
-
-    @Column(name = "total_quantity")
-    private Integer totalQuantity;
-
-    @Column(name = "unit_cost")
-    private Integer unitCost;
 
 
     public ItemRegistrationEntity() {
     }
 
-    public ItemRegistrationEntity(Long id, String itemId, String item, String category, Integer unitQuantity, String supplierId, Integer totalCost, Integer totalQuantity, Integer unitCost) {
+    public ItemRegistrationEntity(Long id, String itemId, String itemName, String category) {
         this.id = id;
         this.itemId = itemId;
-        this.item = item;
+        this.itemName = itemName;
         this.category = category;
-        this.unitQuantity = unitQuantity;
-        this.supplierId = supplierId;
-        this.totalCost = totalCost;
-        this.totalQuantity = totalQuantity;
-        this.unitCost = unitCost;
     }
+
 
     public Long getId() {
         return id;
@@ -66,12 +47,12 @@ public class ItemRegistrationEntity {
         this.itemId = itemId;
     }
 
-    public String getItem() {
-        return item;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getCategory() {
@@ -82,43 +63,4 @@ public class ItemRegistrationEntity {
         this.category = category;
     }
 
-    public Integer getUnitQuantity() {
-        return unitQuantity;
-    }
-
-    public void setUnitQuantity(Integer unitQuantity) {
-        this.unitQuantity = unitQuantity;
-    }
-
-    public String getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public Integer getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(Integer totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Integer getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(Integer totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
-
-    public Integer getUnitCost() {
-        return unitCost;
-    }
-
-    public void setUnitCost(Integer unitCost) {
-        this.unitCost = unitCost;
-    }
 }

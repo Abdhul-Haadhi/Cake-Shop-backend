@@ -24,7 +24,7 @@ public class CustomerRegistrationController {
     public ResponseEntity<CustomerRegistrationDto> addForm(@RequestBody CustomerRegistrationDto customerRegistrationDto) {
 
         try {
-            CustomerRegistrationDto customerRegistrationDtoResponse = customerRegistrationServiceI.addCustomerRegistrationEntry(customerRegistrationDto);
+            CustomerRegistrationDto customerRegistrationDtoResponse = customerRegistrationServiceI.addCustomerRegistrationEntity(customerRegistrationDto);
             return ResponseEntity.created(URI.create("/customer-registration"+customerRegistrationDtoResponse.getId())).body(customerRegistrationDtoResponse);
         }
         catch (Exception e) {
