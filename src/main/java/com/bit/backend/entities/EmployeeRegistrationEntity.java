@@ -1,6 +1,5 @@
 package com.bit.backend.entities;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -20,32 +19,23 @@ public class EmployeeRegistrationEntity {
     @Column(name = "full_name")
     private String fullName;
 
-//    @Column(name = "calling_name")
-//    private String callingName;
-
     @Column(name = "nic")
     private String nic;
 
     @Column(name = "birthday")
     private LocalDate birthday;
 
-//    @Column(name = "age")
-//    private Integer age;
-
     @Column(name = "address")
     private String address;
 
     @Column(name = "contact_number")
-    private String contactNumber;
+    private Integer contactNumber;
 
     @Column(name = "gender")
     private String gender;
 
     @Column(name = "email")
     private String email;
-
-//    @Column(name = "emergency_contact")
-//    private String emergencyContact;
 
     @Column(name = "job_role")
     private String jobRole;
@@ -54,19 +44,16 @@ public class EmployeeRegistrationEntity {
     public EmployeeRegistrationEntity() {
     }
 
-    public EmployeeRegistrationEntity(Long id, String employeeNumber, String fullName, String callingName, String nic, LocalDate birthday, Integer age, String address, String contactNumber, String gender, String email, String emergencyContact, String jobRole) {
+    public EmployeeRegistrationEntity(Long id, String employeeNumber, String fullName, String nic, LocalDate birthday, String address, Integer contactNumber, String gender, String email, String jobRole) {
         this.id = id;
         this.employeeNumber = employeeNumber;
         this.fullName = fullName;
-//        this.callingName = callingName;
         this.nic = nic;
         this.birthday = birthday;
-//        this.age = age;
         this.address = address;
         this.contactNumber = contactNumber;
         this.gender = gender;
         this.email = email;
-//        this.emergencyContact = emergencyContact;
         this.jobRole = jobRole;
     }
 
@@ -94,14 +81,6 @@ public class EmployeeRegistrationEntity {
         this.fullName = fullName;
     }
 
-//    public String getCallingName() {
-//        return callingName;
-//    }
-
-//    public void setCallingName(String callingName) {
-//        this.callingName = callingName;
-//    }
-
     public String getNic() {
         return nic;
     }
@@ -118,14 +97,6 @@ public class EmployeeRegistrationEntity {
         this.birthday = birthday;
     }
 
-//    public Integer getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
-
     public String getAddress() {
         return address;
     }
@@ -134,11 +105,11 @@ public class EmployeeRegistrationEntity {
         this.address = address;
     }
 
-    public String getContactNumber() {
+    public Integer getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(String contactNumber) {
+    public void setContactNumber(Integer contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -157,14 +128,6 @@ public class EmployeeRegistrationEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    public String getEmergencyContact() {
-//        return emergencyContact;
-//    }
-//
-//    public void setEmergencyContact(String emergencyContact) {
-//        this.emergencyContact = emergencyContact;
-//    }
 
     public String getJobRole() {
         return jobRole;
