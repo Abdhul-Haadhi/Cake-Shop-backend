@@ -1,13 +1,13 @@
 package com.bit.backend.controllers;
 
-
-import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.ProductRegistrationDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.ProductRegistrationServiceI;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.util.List;
@@ -20,7 +20,7 @@ public class ProductRegistrationController {
         this.productRegistrationServiceI = productRegistrationServiceI;
     }
 
-    @PostMapping("/product-registration")
+    @PostMapping(value = "/product-registration", consumes = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<ProductRegistrationDto> addForm(@RequestBody ProductRegistrationDto productRegistrationDto) {
 
@@ -30,6 +30,24 @@ public class ProductRegistrationController {
         }
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = {"/product-registration"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<ProductRegistrationDto> addForm(@RequestPart("product") ProductRegistrationDto productRegistrationDto,
+                                                          @RequestPart("image") MultipartFile file){
+        if (file == null || file.isEmpty()) {
+            throw new AppException("Item image file is not found", HttpStatus.BAD_REQUEST);
+        }
+        try {
+            productRegistrationDto.setImage(file.getBytes());
+            ProductRegistrationDto saved = productRegistrationServiceI.addProductRegistrationEntity(productRegistrationDto);
+
+            return ResponseEntity.created(URI.create("/product-registration/" + saved.getId())).body(saved);
+
+        }
+        catch (Exception e){
+            throw new AppException("Request failed with error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -69,4 +87,7 @@ public class ProductRegistrationController {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+
 }

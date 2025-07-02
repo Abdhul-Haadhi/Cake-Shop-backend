@@ -19,38 +19,44 @@ public class ProductRegistrationEntity {
     @Column(name = "ini_weight")
     private String initialWeight;
 
-    @Column(name = "required_items")
-    private String requiredItems;
+    @Column(name = "measurement_category")
+    private String measurementCategory;
 
-    @Column(name = "used_amount")
-    private String usedAmount;
+//    @Column(name = "required_items")
+//    private String requiredItems;
+
+//    @Column(name = "used_amount")
+//    private String usedAmount;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "final_price")
+    private String finalPrice;
 
-    @Column(name = "total_cost")
-    private String totalCost;
+//    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @Lob
+    private byte[] image;
 
-    @Column(name = "required_quantities")
-    private String requiredItemsQuantities;
+//    @Column(name = "total_cost")
+//    private String totalCost;
+
+//    @Column(name = "required_quantities")
+//    private String requiredItemsQuantities;
+
 
     public ProductRegistrationEntity() {
     }
 
-    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String requiredItems, String usedAmount, String description, String image, String totalCost, String requiredItemsQuantities) {
+    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String measurementCategory, String description, String finalPrice, byte[] image) {
         this.id = id;
         this.productId = productId;
         this.product = product;
         this.initialWeight = initialWeight;
-        this.requiredItems = requiredItems;
-        this.usedAmount = usedAmount;
+        this.measurementCategory = measurementCategory;
         this.description = description;
+        this.finalPrice = finalPrice;
         this.image = image;
-        this.totalCost = totalCost;
-        this.requiredItemsQuantities = requiredItemsQuantities;
     }
 
     public Long getId() {
@@ -85,21 +91,37 @@ public class ProductRegistrationEntity {
         this.initialWeight = initialWeight;
     }
 
-    public String getRequiredItems() {
-        return requiredItems;
+    public String getMeasurementCategory() {
+        return measurementCategory;
     }
 
-    public void setRequiredItems(String requiredItems) {
-        this.requiredItems = requiredItems;
+    public void setMeasurementCategory(String measurementCategory) {
+        this.measurementCategory = measurementCategory;
     }
 
-    public String getUsedAmount() {
-        return usedAmount;
+    public String getFinalPrice() {
+        return finalPrice;
     }
 
-    public void setUsedAmount(String usedAmount) {
-        this.usedAmount = usedAmount;
+    public void setFinalPrice(String finalPrice) {
+        this.finalPrice = finalPrice;
     }
+
+    //    public String getRequiredItems() {
+//        return requiredItems;
+//    }
+//
+//    public void setRequiredItems(String requiredItems) {
+//        this.requiredItems = requiredItems;
+//    }
+//
+//    public String getUsedAmount() {
+//        return usedAmount;
+//    }
+//
+//    public void setUsedAmount(String usedAmount) {
+//        this.usedAmount = usedAmount;
+//    }
 
     public String getDescription() {
         return description;
@@ -109,27 +131,27 @@ public class ProductRegistrationEntity {
         this.description = description;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
-    public String getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(String totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public String getRequiredItemsQuantities() {
-        return requiredItemsQuantities;
-    }
-
-    public void setRequiredItemsQuantities(String requiredItemsQuantities) {
-        this.requiredItemsQuantities = requiredItemsQuantities;
-    }
+    //    public String getTotalCost() {
+//        return totalCost;
+//    }
+//
+//    public void setTotalCost(String totalCost) {
+//        this.totalCost = totalCost;
+//    }
+//
+//    public String getRequiredItemsQuantities() {
+//        return requiredItemsQuantities;
+//    }
+//
+//    public void setRequiredItemsQuantities(String requiredItemsQuantities) {
+//        this.requiredItemsQuantities = requiredItemsQuantities;
+//    }
 }

@@ -1,32 +1,37 @@
 package com.bit.backend.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Lob;
+
 public class ProductRegistrationDto {
     private long id;
     private String productId;
     private String product;
     private Integer initialWeight;
-    private String requiredItems;
-    private Integer usedAmount;
+    private Integer measurementCategory;
+//    private String requiredItems;
+//    private Integer usedAmount;
     private String description;
-    private String image;
-    private Integer totalCost;
-    private Integer requiredItemsQuantities;
+    private Integer finalPrice;
+//    private Integer totalCost;
+//    private Integer requiredItemsQuantities;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private byte[] image;
 
 
     public ProductRegistrationDto() {
     }
 
-    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, String requiredItems, Integer usedAmount, String description, String image, Integer totalCost, Integer requiredItemsQuantities) {
+    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, Integer measurementCategory, String description, Integer finalPrice, byte[] image) {
         this.id = id;
         this.productId = productId;
         this.product = product;
         this.initialWeight = initialWeight;
-        this.requiredItems = requiredItems;
-        this.usedAmount = usedAmount;
+        this.measurementCategory = measurementCategory;
         this.description = description;
+        this.finalPrice = finalPrice;
         this.image = image;
-        this.totalCost = totalCost;
-        this.requiredItemsQuantities = requiredItemsQuantities;
     }
 
     public long getId() {
@@ -61,21 +66,38 @@ public class ProductRegistrationDto {
         this.initialWeight = initialWeight;
     }
 
-    public String getRequiredItems() {
-        return requiredItems;
+    public Integer getMeasurementCategory() {
+        return measurementCategory;
     }
 
-    public void setRequiredItems(String requiredItems) {
-        this.requiredItems = requiredItems;
+    public void setMeasurementCategory(Integer measurementCategory) {
+        this.measurementCategory = measurementCategory;
     }
 
-    public Integer getUsedAmount() {
-        return usedAmount;
+    public Integer getFinalPrice() {
+        return finalPrice;
     }
 
-    public void setUsedAmount(Integer usedAmount) {
-        this.usedAmount = usedAmount;
+    public void setFinalPrice(Integer finalPrice) {
+        this.finalPrice = finalPrice;
     }
+
+
+    //    public String getRequiredItems() {
+//        return requiredItems;
+//    }
+//
+//    public void setRequiredItems(String requiredItems) {
+//        this.requiredItems = requiredItems;
+//    }
+
+//    public Integer getUsedAmount() {
+//        return usedAmount;
+//    }
+//
+//    public void setUsedAmount(Integer usedAmount) {
+//        this.usedAmount = usedAmount;
+//    }
 
     public String getDescription() {
         return description;
@@ -85,27 +107,27 @@ public class ProductRegistrationDto {
         this.description = description;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
-    public Integer getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(Integer totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Integer getRequiredItemsQuantities() {
-        return requiredItemsQuantities;
-    }
-
-    public void setRequiredItemsQuantities(Integer requiredItemsQuantities) {
-        this.requiredItemsQuantities = requiredItemsQuantities;
-    }
+//    public Integer getTotalCost() {
+//        return totalCost;
+//    }
+//
+//    public void setTotalCost(Integer totalCost) {
+//        this.totalCost = totalCost;
+//    }
+//
+//    public Integer getRequiredItemsQuantities() {
+//        return requiredItemsQuantities;
+//    }
+//
+//    public void setRequiredItemsQuantities(Integer requiredItemsQuantities) {
+//        this.requiredItemsQuantities = requiredItemsQuantities;
+//    }
 }
