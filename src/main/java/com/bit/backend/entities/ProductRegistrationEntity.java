@@ -36,6 +36,7 @@ public class ProductRegistrationEntity {
 
 //    @Column(name = "image", columnDefinition = "LONGBLOB")
     @Lob
+    @Column(name = "image")
     private byte[] image;
 
 //    @Column(name = "total_cost")
@@ -44,11 +45,17 @@ public class ProductRegistrationEntity {
 //    @Column(name = "required_quantities")
 //    private String requiredItemsQuantities;
 
+    @Column(name = "image_name")
+    private String imageName;
+
+    @Column(name = "image_type")
+    private String imageType;
+
 
     public ProductRegistrationEntity() {
     }
 
-    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String measurementCategory, String description, String finalPrice, byte[] image) {
+    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String measurementCategory, String description, String finalPrice, byte[] image, String imageName, String imageType) {
         this.id = id;
         this.productId = productId;
         this.product = product;
@@ -57,6 +64,8 @@ public class ProductRegistrationEntity {
         this.description = description;
         this.finalPrice = finalPrice;
         this.image = image;
+        this.imageName = imageName;
+        this.imageType = imageType;
     }
 
     public Long getId() {
@@ -154,4 +163,20 @@ public class ProductRegistrationEntity {
 //    public void setRequiredItemsQuantities(String requiredItemsQuantities) {
 //        this.requiredItemsQuantities = requiredItemsQuantities;
 //    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
 }

@@ -34,13 +34,15 @@ public class ProductRegistrationController {
     }
 
     @PostMapping(value = {"/product-registration"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<ProductRegistrationDto> addForm(@RequestPart("product") ProductRegistrationDto productRegistrationDto,
+    public ResponseEntity<ProductRegistrationDto> addForm(@RequestPart("prodRegForm") ProductRegistrationDto productRegistrationDto,
                                                           @RequestPart("image") MultipartFile file){
         if (file == null || file.isEmpty()) {
             throw new AppException("Item image file is not found", HttpStatus.BAD_REQUEST);
         }
         try {
             productRegistrationDto.setImage(file.getBytes());
+            productRegistrationDto.setImageName(file.getOriginalFilename());
+            productRegistrationDto.setImageType(file.getContentType());
             ProductRegistrationDto saved = productRegistrationServiceI.addProductRegistrationEntity(productRegistrationDto);
 
             return ResponseEntity.created(URI.create("/product-registration/" + saved.getId())).body(saved);
