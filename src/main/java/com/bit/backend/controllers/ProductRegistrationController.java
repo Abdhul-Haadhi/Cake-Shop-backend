@@ -67,9 +67,14 @@ public class ProductRegistrationController {
 
     @PutMapping("/product-registration/{id}")
 
-    public ResponseEntity<ProductRegistrationDto> updateProdRegForm(@PathVariable Long id, @RequestBody ProductRegistrationDto productRegistrationDto) {
+    public ResponseEntity<ProductRegistrationDto> updateProdRegForm(@PathVariable Long id,
+                                                                    @RequestPart("prodRegForm") ProductRegistrationDto productRegistrationDto,
+                                                                    @RequestPart("image") MultipartFile file) {
 
         try {
+            productRegistrationDto.setImage(file.getBytes());
+            productRegistrationDto.setImageName(file.getOriginalFilename());
+            productRegistrationDto.setImageType(file.getContentType());
             ProductRegistrationDto responseProductRegistrationDto = productRegistrationServiceI.updateProductRegistration(id,productRegistrationDto);
             return ResponseEntity.ok(responseProductRegistrationDto);
         }
