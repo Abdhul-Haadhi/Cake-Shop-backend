@@ -8,30 +8,34 @@ public class ProductRegistrationDto {
     private String productId;
     private String product;
     private Integer initialWeight;
-    private Integer measurementCategory;
-//    private String requiredItems;
+//    private Integer measurementCategory;
+    //    private String requiredItems;
 //    private Integer usedAmount;
     private String description;
     private Integer finalPrice;
-//    private Integer totalCost;
+    //    private Integer totalCost;
 //    private Integer requiredItemsQuantities;
-
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private byte[] image;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String imageName;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String imageType;
 
 
     public ProductRegistrationDto() {
     }
 
-    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, Integer measurementCategory, String description, Integer finalPrice, byte[] image) {
+    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, String description, Integer finalPrice, byte[] image, String imageName, String imageType) {
         this.id = id;
         this.productId = productId;
         this.product = product;
         this.initialWeight = initialWeight;
-        this.measurementCategory = measurementCategory;
         this.description = description;
         this.finalPrice = finalPrice;
         this.image = image;
+        this.imageName = imageName;
+        this.imageType = imageType;
     }
 
     public long getId() {
@@ -66,13 +70,13 @@ public class ProductRegistrationDto {
         this.initialWeight = initialWeight;
     }
 
-    public Integer getMeasurementCategory() {
-        return measurementCategory;
-    }
-
-    public void setMeasurementCategory(Integer measurementCategory) {
-        this.measurementCategory = measurementCategory;
-    }
+//    public Integer getMeasurementCategory() {
+//        return measurementCategory;
+//    }
+//
+//    public void setMeasurementCategory(Integer measurementCategory) {
+//        this.measurementCategory = measurementCategory;
+//    }
 
     public Integer getFinalPrice() {
         return finalPrice;
@@ -115,6 +119,21 @@ public class ProductRegistrationDto {
         this.image = image;
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
 //    public Integer getTotalCost() {
 //        return totalCost;
 //    }
