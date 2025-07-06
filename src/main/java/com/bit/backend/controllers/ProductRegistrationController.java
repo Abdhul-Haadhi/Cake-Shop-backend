@@ -64,6 +64,18 @@ public class ProductRegistrationController {
         }
     }
 
+    @GetMapping("/featured-products")
+    public ResponseEntity<List<ProductRegistrationDto>> getAllProducts() {
+
+        try {
+            List<ProductRegistrationDto> productRegistrationDtoList = productRegistrationServiceI.getData();
+            return ResponseEntity.ok(productRegistrationDtoList);
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/product-registration/{id}")
     public ResponseEntity<ProductRegistrationDto> updateProdRegForm(@PathVariable Long id,
                                                                     @RequestPart("prodRegForm") ProductRegistrationDto productRegistrationDto,
