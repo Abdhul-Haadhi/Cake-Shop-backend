@@ -29,7 +29,7 @@ public class EmployeeRegistrationEntity {
     private String address;
 
     @Column(name = "contact_number")
-    private Integer contactNumber;
+    private String contactNumber;
 
     @Column(name = "gender")
     private String gender;
@@ -44,7 +44,7 @@ public class EmployeeRegistrationEntity {
     public EmployeeRegistrationEntity() {
     }
 
-    public EmployeeRegistrationEntity(Long id, String employeeNumber, String fullName, String nic, LocalDate birthday, String address, Integer contactNumber, String gender, String email, String jobRole) {
+    public EmployeeRegistrationEntity(Long id, String employeeNumber, String fullName, String nic, LocalDate birthday, String address, String contactNumber, String gender, String email, String jobRole) {
         this.id = id;
         this.employeeNumber = employeeNumber;
         this.fullName = fullName;
@@ -105,11 +105,11 @@ public class EmployeeRegistrationEntity {
         this.address = address;
     }
 
-    public Integer getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 

@@ -1,5 +1,6 @@
 package com.bit.backend.controllers;
 
+import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.EmployeeRegistrationServiceI;
@@ -29,7 +30,6 @@ public class EmployeeRegistrationController {
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @GetMapping("/employee-registration")

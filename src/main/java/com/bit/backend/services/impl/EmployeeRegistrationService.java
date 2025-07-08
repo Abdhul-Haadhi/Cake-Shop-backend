@@ -3,7 +3,9 @@ package com.bit.backend.services.impl;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
 import com.bit.backend.entities.EmployeeRegistrationEntity;
 import com.bit.backend.exceptions.AppException;
+import com.bit.backend.mappers.CustomerRegistrationMapper;
 import com.bit.backend.mappers.EmployeeRegistrationMapper;
+import com.bit.backend.repositories.CustomerRegistrationRepository;
 import com.bit.backend.repositories.EmployeeRegistrationRepository;
 import com.bit.backend.services.EmployeeRegistrationServiceI;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ public class EmployeeRegistrationService implements EmployeeRegistrationServiceI
         this.employeeRegistrationRepository = employeeRegistrationRepository;
         this.employeeRegistrationMapper = employeeRegistrationMapper;
     }
+
 
     @Override
     public EmployeeRegistrationDto addEmployeeRegistrationEntity(EmployeeRegistrationDto employeeRegistrationDto) {

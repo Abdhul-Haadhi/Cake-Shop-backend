@@ -10,7 +10,7 @@ public class EmployeeRegistrationDto {
     private String nic;
     private LocalDate birthday;
     private String address;
-    private Integer contactNumber;
+    private String contactNumber;
     private String gender;
     private String email;
     private String jobRole;
@@ -18,7 +18,7 @@ public class EmployeeRegistrationDto {
     public EmployeeRegistrationDto() {
     }
 
-    public EmployeeRegistrationDto(long id, String employeeNumber, String fullName, String nic, LocalDate birthday, String address, Integer contactNumber, String gender, String email, String jobRole) {
+    public EmployeeRegistrationDto(long id, String employeeNumber, String fullName, String nic, LocalDate birthday, String address, String contactNumber, String gender, String email, String jobRole) {
         this.id = id;
         this.employeeNumber = employeeNumber;
         this.fullName = fullName;
@@ -79,11 +79,11 @@ public class EmployeeRegistrationDto {
         this.address = address;
     }
 
-    public Integer getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 

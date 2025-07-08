@@ -1,5 +1,6 @@
 package com.bit.backend.dtos;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 public class OrderPageDto {
@@ -10,11 +11,12 @@ public class OrderPageDto {
     private String size;
     private Integer price;
     private Integer quantity;
+    private Integer productId;
 
     public OrderPageDto() {
     }
 
-    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, String size, Integer price, Integer quantity) {
+    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, String size, Integer price, Integer quantity, Integer productId) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -22,6 +24,7 @@ public class OrderPageDto {
         this.size = size;
         this.price = price;
         this.quantity = quantity;
+        this.productId = productId;
     }
 
     public long getId() {
@@ -80,5 +83,11 @@ public class OrderPageDto {
         this.quantity = quantity;
     }
 
+    public Integer getProductId() {
+        return productId;
+    }
 
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
 }
