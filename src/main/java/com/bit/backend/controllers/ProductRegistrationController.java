@@ -77,7 +77,7 @@ public class ProductRegistrationController {
     }
 
     @GetMapping("/cart-page/{id}")
-    public ResponseEntity<List<ProductRegistrationDto>> getCartProducts(@PathVariable Long id) {
+    public ResponseEntity<List<ProductRegistrationDto>> getCartProductDetails(@PathVariable Long id) {
 
         try {
             List<ProductRegistrationDto> productRegistrationDtoList = productRegistrationServiceI.getData();

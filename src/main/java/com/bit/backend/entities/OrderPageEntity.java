@@ -3,7 +3,6 @@ package com.bit.backend.entities;
 
 import jakarta.persistence.*;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
@@ -26,7 +25,7 @@ public class OrderPageEntity {
     private Integer quantity;
 
     @Column(name = "size")
-    private String size;
+    private Integer size;
 
     @Column(name = "price")
     private Integer price;
@@ -37,7 +36,7 @@ public class OrderPageEntity {
     public OrderPageEntity() {
     }
 
-    public OrderPageEntity(Long id, String user, LocalDate date, String customizeNote, Integer quantity, String size, Integer price, Integer productId) {
+    public OrderPageEntity(Long id, String user, LocalDate date, String customizeNote, Integer quantity, Integer size, Integer price, Integer productId) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -80,11 +79,11 @@ public class OrderPageEntity {
         this.customizeNote = customizeNote;
     }
 
-    public String getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 
