@@ -1,30 +1,22 @@
 package com.bit.backend.dtos;
 
-import java.time.LocalDate;
-
 public class SupplierRegistrationDto {
     private long id;
-    private String companyName;
-    private String businessRegNumber;
+    private String supplierName;
     private String supplierID;
-    private String contactPersonName;
-    private String contactPersonDesignation;
-    private Integer contactPersonPhoneNumber;
-    private String contactPersonEmailAddress;
+    private String contactNumber;
+    private String supplierEmailAddress;
     private String address;
 
     public SupplierRegistrationDto() {
     }
 
-    public SupplierRegistrationDto(long id, String companyName, String businessRegNumber, String supplierID, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
+    public SupplierRegistrationDto(long id, String supplierName, String supplierID, String contactNumber, String supplierEmailAddress, String address) {
         this.id = id;
-        this.companyName = companyName;
-        this.businessRegNumber = businessRegNumber;
+        this.supplierName = supplierName;
         this.supplierID = supplierID;
-        this.contactPersonName = contactPersonName;
-        this.contactPersonDesignation = contactPersonDesignation;
-        this.contactPersonPhoneNumber = contactPersonPhoneNumber;
-        this.contactPersonEmailAddress = contactPersonEmailAddress;
+        this.contactNumber = contactNumber;
+        this.supplierEmailAddress = supplierEmailAddress;
         this.address = address;
     }
 
@@ -36,20 +28,12 @@ public class SupplierRegistrationDto {
         this.id = id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getBusinessRegNumber() {
-        return businessRegNumber;
-    }
-
-    public void setBusinessRegNumber(String businessRegNumber) {
-        this.businessRegNumber = businessRegNumber;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getSupplierID() {
@@ -60,36 +44,20 @@ public class SupplierRegistrationDto {
         this.supplierID = supplierID;
     }
 
-    public String getContactPersonName() {
-        return contactPersonName;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContactPersonName(String contactPersonName) {
-        this.contactPersonName = contactPersonName;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getContactPersonDesignation() {
-        return contactPersonDesignation;
+    public String getSupplierEmailAddress() {
+        return supplierEmailAddress;
     }
 
-    public void setContactPersonDesignation(String contactPersonDesignation) {
-        this.contactPersonDesignation = contactPersonDesignation;
-    }
-
-    public Integer getContactPersonPhoneNumber() {
-        return contactPersonPhoneNumber;
-    }
-
-    public void setContactPersonPhoneNumber(Integer contactPersonPhoneNumber) {
-        this.contactPersonPhoneNumber = contactPersonPhoneNumber;
-    }
-
-    public String getContactPersonEmailAddress() {
-        return contactPersonEmailAddress;
-    }
-
-    public void setContactPersonEmailAddress(String contactPersonEmailAddress) {
-        this.contactPersonEmailAddress = contactPersonEmailAddress;
+    public void setSupplierEmailAddress(String supplierEmailAddress) {
+        this.supplierEmailAddress = supplierEmailAddress;
     }
 
     public String getAddress() {

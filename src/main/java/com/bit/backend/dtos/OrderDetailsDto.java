@@ -1,64 +1,45 @@
-package com.bit.backend.entities;
+package com.bit.backend.dtos;
 
-
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity
-@Table(name ="Billing_table")
-public class BillingFormEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDetailsDto {
     private long id;
-
-    @Column(name = "Name")
-    private String name;
-
-    @Column(name = "User_id")
     private String user;
-
-    @Column(name = "Date")
+    private Integer totalPrice;
+    private List<OrderItemDto> items;
+//    private String selectedSize;
+//    private Integer quantities;
     private LocalDate date;
-
-    @Column(name = "Contact_Number")
-    private String contactNumber;
-
-    @Column(name = "Email")
+    private String name;
     private String email;
-
-    @Column(name = "Address")
+    private String contactNumber;
     private String address;
-
-    @Lob
-    @Column(name = "receipt")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private byte[] receipt;
-
-    @Column(name = "receipt_name")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String receiptName;
-
-    @Column(name = "receipt_type")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String receiptType;
 
-    @OneToOne
-    @JoinColumn(name = "order_details_id")
-    private OrderDetailsEntity orderDetails;
-
-    public BillingFormEntity() {
+    public OrderDetailsDto() {
     }
 
-    public BillingFormEntity(long id, String name, String user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, OrderDetailsEntity orderDetails) {
+    public OrderDetailsDto(long id, String user, Integer totalPrice, List<OrderItemDto> items, LocalDate date, String name, String email, String contactNumber, String address, byte[] receipt, String receiptName, String receiptType) {
         this.id = id;
-        this.name = name;
         this.user = user;
+        this.totalPrice = totalPrice;
+        this.items = items;
         this.date = date;
-        this.contactNumber = contactNumber;
+        this.name = name;
         this.email = email;
+        this.contactNumber = contactNumber;
         this.address = address;
         this.receipt = receipt;
         this.receiptName = receiptName;
         this.receiptType = receiptType;
-        this.orderDetails = orderDetails;
     }
 
     public long getId() {
@@ -69,20 +50,28 @@ public class BillingFormEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUser() {
         return user;
     }
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public List<OrderItemDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItemDto> items) {
+        this.items = items;
     }
 
     public LocalDate getDate() {
@@ -93,12 +82,12 @@ public class BillingFormEntity {
         this.date = date;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getName() {
+        return name;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -107,6 +96,14 @@ public class BillingFormEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public String getAddress() {
@@ -139,13 +136,5 @@ public class BillingFormEntity {
 
     public void setReceiptType(String receiptType) {
         this.receiptType = receiptType;
-    }
-
-    public OrderDetailsEntity getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(OrderDetailsEntity orderDetails) {
-        this.orderDetails = orderDetails;
     }
 }

@@ -11,26 +11,17 @@ public class SupplierRegistrationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "company_Name")
-    private String companyName;
-
-    @Column(name = "reg_Number")
-    private String businessRegNumber;
+    @Column(name = "supplier_Name")
+    private String supplierName;
 
     @Column(name = "spplier_Id")
     private String supplierID;
 
-    @Column(name = "contact_Name")
-    private String contactPersonName;
-
-    @Column(name = "job_Title")
-    private String contactPersonDesignation;
-
     @Column(name = "contact_number")
-    private Integer contactPersonPhoneNumber;
+    private String contactNumber;
 
     @Column(name = "email")
-    private String contactPersonEmailAddress;
+    private String supplierEmailAddress;
 
     @Column(name = "address")
     private String address;
@@ -39,15 +30,12 @@ public class SupplierRegistrationEntity {
     public SupplierRegistrationEntity() {
     }
 
-    public SupplierRegistrationEntity(Long id, String companyName, String businessRegNumber, String supplierID, String contactPersonName, String contactPersonDesignation, Integer contactPersonPhoneNumber, String contactPersonEmailAddress, String address) {
+    public SupplierRegistrationEntity(Long id, String supplierName, String supplierID, String contactNumber, String supplierEmailAddress, String address) {
         this.id = id;
-        this.companyName = companyName;
-        this.businessRegNumber = businessRegNumber;
+        this.supplierName = supplierName;
         this.supplierID = supplierID;
-        this.contactPersonName = contactPersonName;
-        this.contactPersonDesignation = contactPersonDesignation;
-        this.contactPersonPhoneNumber = contactPersonPhoneNumber;
-        this.contactPersonEmailAddress = contactPersonEmailAddress;
+        this.contactNumber = contactNumber;
+        this.supplierEmailAddress = supplierEmailAddress;
         this.address = address;
     }
 
@@ -59,20 +47,12 @@ public class SupplierRegistrationEntity {
         this.id = id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getBusinessRegNumber() {
-        return businessRegNumber;
-    }
-
-    public void setBusinessRegNumber(String businessRegNumber) {
-        this.businessRegNumber = businessRegNumber;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getSupplierID() {
@@ -83,36 +63,20 @@ public class SupplierRegistrationEntity {
         this.supplierID = supplierID;
     }
 
-    public String getContactPersonName() {
-        return contactPersonName;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContactPersonName(String contactPersonName) {
-        this.contactPersonName = contactPersonName;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getContactPersonDesignation() {
-        return contactPersonDesignation;
+    public String getSupplierEmailAddress() {
+        return supplierEmailAddress;
     }
 
-    public void setContactPersonDesignation(String contactPersonDesignation) {
-        this.contactPersonDesignation = contactPersonDesignation;
-    }
-
-    public Integer getContactPersonPhoneNumber() {
-        return contactPersonPhoneNumber;
-    }
-
-    public void setContactPersonPhoneNumber(Integer contactPersonPhoneNumber) {
-        this.contactPersonPhoneNumber = contactPersonPhoneNumber;
-    }
-
-    public String getContactPersonEmailAddress() {
-        return contactPersonEmailAddress;
-    }
-
-    public void setContactPersonEmailAddress(String contactPersonEmailAddress) {
-        this.contactPersonEmailAddress = contactPersonEmailAddress;
+    public void setSupplierEmailAddress(String supplierEmailAddress) {
+        this.supplierEmailAddress = supplierEmailAddress;
     }
 
     public String getAddress() {
@@ -122,6 +86,4 @@ public class SupplierRegistrationEntity {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
 }
