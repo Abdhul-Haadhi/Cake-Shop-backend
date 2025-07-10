@@ -8,7 +8,7 @@ public class OrderPageDto {
     private String user;
     private LocalDate date;
     private String customizeNote;
-    private String size;
+    private Integer size;
     private Integer price;
     private Integer quantity;
     private Integer productId;
@@ -16,7 +16,7 @@ public class OrderPageDto {
     public OrderPageDto() {
     }
 
-    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, String size, Integer price, Integer quantity, Integer productId) {
+    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, Integer size, Integer price, Integer quantity, Integer productId) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -59,11 +59,11 @@ public class OrderPageDto {
         this.customizeNote = customizeNote;
     }
 
-    public String getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 
