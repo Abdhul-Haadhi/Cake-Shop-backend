@@ -1,52 +1,25 @@
-package com.bit.backend.entities;
-
-
-import jakarta.persistence.*;
+package com.bit.backend.dtos;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name ="Billing_table")
-public class BillingFormEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BillingFormDto {
+
     private long id;
-
-    @Column(name = "Name")
     private String name;
-
-    @Column(name = "User_id")
     private String user;
-
-    @Column(name = "Date")
     private LocalDate date;
-
-    @Column(name = "Contact_Number")
     private String contactNumber;
-
-    @Column(name = "Email")
     private String email;
-
-    @Column(name = "Address")
     private String address;
-
-    @Lob
-    @Column(name = "receipt")
     private byte[] receipt;
-
-    @Column(name = "receipt_name")
     private String receiptName;
-
-    @Column(name = "receipt_type")
     private String receiptType;
-
-    @Column(name = "order_id")
     private Long orderId;
 
-    public BillingFormEntity() {
+    public BillingFormDto() {
     }
 
-    public BillingFormEntity(long id, String name, String user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
+    public BillingFormDto(long id, String name, String user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
         this.id = id;
         this.name = name;
         this.user = user;

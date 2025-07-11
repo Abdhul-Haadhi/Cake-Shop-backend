@@ -5,11 +5,10 @@ import com.bit.backend.dtos.OrderDetailsDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.OrderDetailsServiceI;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.util.List;
@@ -22,11 +21,11 @@ public class OrderDetailsController {
         this.orderDetailsServiceI = orderDetailsServiceI;
     }
 
-    @PostMapping("/checkout-page")
-    public ResponseEntity<OrderDetailsDto> addForm(@RequestBody OrderDetailsDto orderDetailsDto) {
+    @PostMapping(value = "/checkout-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OrderDetailsDto> addForm(@RequestPart("orderDetailsForm") OrderDetailsDto orderDetailsDto, @RequestPart("receipt")MultipartFile file) {
 
         try {
-            OrderDetailsDto orderDetailsDtoResponse = orderDetailsServiceI.addBillingFormEntity(orderDetailsDto);
+            OrderDetailsDto orderDetailsDtoResponse = orderDetailsServiceI.addOrderDetailsEntity(orderDetailsDto);
             return ResponseEntity.created(URI.create("/checkout-page"+ orderDetailsDtoResponse.getId())).body(orderDetailsDtoResponse);
         }
         catch (Exception e) {

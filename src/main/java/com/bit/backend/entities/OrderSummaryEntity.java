@@ -13,20 +13,27 @@ public class OrderSummaryEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
-    @Column(name = "items", columnDefinition = "TEXT")
-    private String itemsJson;
+    @Column(name = "order_id")
+    private Long orderId;
 
-    @Column(name = "total_price")
-    private Integer totalPrice;
+    @Column(name = "item_name")
+    private String itemName;
+
+    @Column(name = "item_qty")
+    private int itemQty;
+
+    @Column(name = "item_price")
+    private Double itemPrice;
 
     public OrderSummaryEntity() {
     }
 
-    public OrderSummaryEntity(Long id, String itemsJson, Integer totalPrice) {
+    public OrderSummaryEntity(Long id, Long orderId, String itemName, int itemQty, Double itemPrice) {
         this.id = id;
-        this.itemsJson = itemsJson;
-        this.totalPrice = totalPrice;
+        this.orderId = orderId;
+        this.itemName = itemName;
+        this.itemQty = itemQty;
+        this.itemPrice = itemPrice;
     }
 
     public Long getId() {
@@ -37,19 +44,35 @@ public class OrderSummaryEntity implements Serializable {
         this.id = id;
     }
 
-    public String getItemsJson() {
-        return itemsJson;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setItemsJson(String itemsJson) {
-        this.itemsJson = itemsJson;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getTotalPrice() {
-        return totalPrice;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public int getItemQty() {
+        return itemQty;
+    }
+
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
+
+    public Double getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(Double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }

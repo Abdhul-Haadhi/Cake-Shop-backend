@@ -7,39 +7,22 @@ import java.util.List;
 
 public class OrderDetailsDto {
     private long id;
-    private String user;
+    private Long user;
+    private LocalDate date;
     private Integer totalPrice;
     private List<OrderItemDto> items;
-//    private String selectedSize;
-//    private Integer quantities;
-    private LocalDate date;
-    private String name;
-    private String email;
-    private String contactNumber;
-    private String address;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private byte[] receipt;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private String receiptName;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private String receiptType;
+    private BillingFormDto billingFormDto;
 
     public OrderDetailsDto() {
     }
 
-    public OrderDetailsDto(long id, String user, Integer totalPrice, List<OrderItemDto> items, LocalDate date, String name, String email, String contactNumber, String address, byte[] receipt, String receiptName, String receiptType) {
+    public OrderDetailsDto(long id, Long user, LocalDate date, Integer totalPrice, List<OrderItemDto> items, BillingFormDto billingFormDto) {
         this.id = id;
         this.user = user;
+        this.date = date;
         this.totalPrice = totalPrice;
         this.items = items;
-        this.date = date;
-        this.name = name;
-        this.email = email;
-        this.contactNumber = contactNumber;
-        this.address = address;
-        this.receipt = receipt;
-        this.receiptName = receiptName;
-        this.receiptType = receiptType;
+        this.billingFormDto = billingFormDto;
     }
 
     public long getId() {
@@ -50,12 +33,20 @@ public class OrderDetailsDto {
         this.id = id;
     }
 
-    public String getUser() {
+    public Long getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(Long user) {
         this.user = user;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Integer getTotalPrice() {
@@ -74,67 +65,11 @@ public class OrderDetailsDto {
         this.items = items;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public BillingFormDto getBillingFormDto() {
+        return billingFormDto;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public byte[] getReceipt() {
-        return receipt;
-    }
-
-    public void setReceipt(byte[] receipt) {
-        this.receipt = receipt;
-    }
-
-    public String getReceiptName() {
-        return receiptName;
-    }
-
-    public void setReceiptName(String receiptName) {
-        this.receiptName = receiptName;
-    }
-
-    public String getReceiptType() {
-        return receiptType;
-    }
-
-    public void setReceiptType(String receiptType) {
-        this.receiptType = receiptType;
+    public void setBillingFormDto(BillingFormDto billingFormDto) {
+        this.billingFormDto = billingFormDto;
     }
 }
