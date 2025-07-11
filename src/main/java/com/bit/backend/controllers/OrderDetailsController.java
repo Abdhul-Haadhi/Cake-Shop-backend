@@ -21,7 +21,7 @@ public class OrderDetailsController {
         this.orderDetailsServiceI = orderDetailsServiceI;
     }
 
-    @PostMapping(value = "/checkout-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/checkout-page", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<OrderDetailsDto> addForm(@RequestPart("orderDetailsForm") OrderDetailsDto orderDetailsDto, @RequestPart("receipt")MultipartFile file) {
 
         try {
