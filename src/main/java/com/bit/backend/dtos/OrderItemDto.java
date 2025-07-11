@@ -1,60 +1,60 @@
 package com.bit.backend.dtos;
 
 public class OrderItemDto {
-    private String productId;
-    private String productName;
-    private String size;
-    private Integer quantity;
-    private Integer price;
+    private Long id;
+    private Long orderId;
+    private String itemName;
+    private int itemQty;
+    private Double itemPrice;
 
     public OrderItemDto() {
     }
 
-    public OrderItemDto(String productId, String productName, String size, Integer quantity, Integer price) {
-        this.productId = productId;
-        this.productName = productName;
-        this.size = size;
-        this.quantity = quantity;
-        this.price = price;
+    public OrderItemDto(Long id, Long orderId, String itemName, int itemQty, Double itemPrice) {
+        this.id = id;
+        this.orderId = orderId;
+        this.itemName = itemName;
+        this.itemQty = itemQty;
+        this.itemPrice = itemPrice;
     }
 
-    public String getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public String getSize() {
-        return size;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public int getItemQty() {
+        return itemQty;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Double getItemPrice() {
+        return itemPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setItemPrice(Double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }
