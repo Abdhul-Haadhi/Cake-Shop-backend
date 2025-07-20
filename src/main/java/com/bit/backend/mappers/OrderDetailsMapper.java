@@ -8,6 +8,7 @@ import com.bit.backend.entities.OrderDetailsEntity;
 import com.bit.backend.entities.OrderSummaryEntity;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -16,8 +17,18 @@ public interface OrderDetailsMapper {
 
     OrderDetailsEntity toOrderDetailsEntity(OrderDetailsDto orderDetailsDto);
     List<OrderSummaryEntity> toOrderSummaryEntityList(List<OrderItemDto> orderItemDtoList);
+
+//    @Mapping(source = "billingFormDto.customerName", target = "customerName")
+//    @Mapping(source = "billingFormDto.email", target = "email")
+//    @Mapping(source = "billingFormDto.address", target = "address")
+//    @Mapping(source = "billingFormDto.contactNumber", target = "contactNumber")
+//    @Mapping(source = "billingFormDto.receiptName", target = "receiptName")
+//    @Mapping(source = "billingFormDto.receiptType", target = "receiptType")
+
     BillingFormEntity toBillingFormEntity(OrderDetailsDto orderDetailsDto);
     List<OrderItemDto> toOrderItemDtoList(List<OrderSummaryEntity> orderSummaryEntityList);
     BillingFormDto toBillingFormDto(BillingFormEntity billingFormEntity);
+    BillingFormEntity toBillingFormEntity(BillingFormDto billingFormDto);
     OrderDetailsDto toOrderDetailsDto(OrderDetailsEntity orderDetailsEntity);
+    List<OrderDetailsDto> toOrderDetailsDtoList(List<OrderDetailsEntity> orderDetailsEntityList);
 }

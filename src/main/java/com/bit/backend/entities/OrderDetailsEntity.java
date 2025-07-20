@@ -1,5 +1,6 @@
 package com.bit.backend.entities;
 
+import com.bit.backend.OrderStatusEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -20,15 +21,19 @@ public class OrderDetailsEntity {
     @Column(name = "total_price")
     private Integer totalPrice;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatusEnum orderStatusEnum;
+
 
     public OrderDetailsEntity() {
     }
 
-    public OrderDetailsEntity(Long id, Long user, LocalDate date, Integer totalPrice) {
+    public OrderDetailsEntity(Long id, Long user, LocalDate date, Integer totalPrice, OrderStatusEnum orderStatusEnum) {
         this.id = id;
         this.user = user;
         this.date = date;
         this.totalPrice = totalPrice;
+        this.orderStatusEnum = orderStatusEnum;
     }
 
     public Long getId() {
@@ -61,5 +66,13 @@ public class OrderDetailsEntity {
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public OrderStatusEnum getOrderStatusEnum() {
+        return orderStatusEnum;
+    }
+
+    public void setOrderStatusEnum(OrderStatusEnum orderStatusEnum) {
+        this.orderStatusEnum = orderStatusEnum;
     }
 }

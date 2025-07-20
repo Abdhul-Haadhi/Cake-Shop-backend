@@ -12,16 +12,16 @@ public class BillingFormEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "customer_name")
+    private String customerName;
 
     @Column(name = "User_id")
-    private String user;
+    private Long user;
 
     @Column(name = "Date")
     private LocalDate date;
 
-    @Column(name = "Contact_Number")
+    @Column(name = "contact_number")
     private String contactNumber;
 
     @Column(name = "Email")
@@ -30,8 +30,9 @@ public class BillingFormEntity {
     @Column(name = "Address")
     private String address;
 
-    @Lob
+
     @Column(name = "receipt")
+    @Lob
     private byte[] receipt;
 
     @Column(name = "receipt_name")
@@ -46,9 +47,9 @@ public class BillingFormEntity {
     public BillingFormEntity() {
     }
 
-    public BillingFormEntity(long id, String name, String user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
+    public BillingFormEntity(long id, String customerName, Long user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
         this.id = id;
-        this.name = name;
+        this.customerName = customerName;
         this.user = user;
         this.date = date;
         this.contactNumber = contactNumber;
@@ -68,19 +69,19 @@ public class BillingFormEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getUser() {
+    public Long getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(Long user) {
         this.user = user;
     }
 

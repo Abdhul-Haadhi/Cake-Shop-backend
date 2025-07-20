@@ -1,27 +1,32 @@
 package com.bit.backend.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 
 public class BillingFormDto {
 
     private long id;
-    private String name;
-    private String user;
+    private String customerName;
+    private Long user;
     private LocalDate date;
     private String contactNumber;
     private String email;
     private String address;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private byte[] receipt;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String receiptName;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String receiptType;
     private Long orderId;
 
     public BillingFormDto() {
     }
 
-    public BillingFormDto(long id, String name, String user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
+    public BillingFormDto(long id, String customerName, Long user, LocalDate date, String contactNumber, String email, String address, byte[] receipt, String receiptName, String receiptType, Long orderId) {
         this.id = id;
-        this.name = name;
+        this.customerName = customerName;
         this.user = user;
         this.date = date;
         this.contactNumber = contactNumber;
@@ -41,19 +46,19 @@ public class BillingFormDto {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getUser() {
+    public Long getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(Long user) {
         this.user = user;
     }
 

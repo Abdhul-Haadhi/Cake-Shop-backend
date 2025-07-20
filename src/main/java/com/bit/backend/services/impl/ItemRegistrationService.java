@@ -1,6 +1,7 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.ItemRegistrationDto;
+import com.bit.backend.dtos.ItemReportDto;
 import com.bit.backend.entities.ItemRegistrationEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.ItemRegistrationMapper;
@@ -9,6 +10,7 @@ import com.bit.backend.services.ItemRegistrationServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +51,24 @@ public class ItemRegistrationService implements ItemRegistrationServiceI {
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public List<ItemReportDto> getReportData() {
+        List<Object[]> rows = itemRegistrationRepository.itemReport();
+        List<ItemReportDto> reportList = new ArrayList<>();
+        for (Object[] row : rows) {
+            ItemReportDto dto = new ItemReportDto(
+                    (String) row[0],
+                    (String) row[1],
+                    (String) row[2],
+                    String.valueOf(row[3]), // Dates: format as needed
+                    String.valueOf(row[4]),
+                    ((Number) row[5]).intValue()
+            );
+            reportList.add(dto);
+        }
+        return reportList;
     }
 
 

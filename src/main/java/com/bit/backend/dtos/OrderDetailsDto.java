@@ -10,6 +10,7 @@ public class OrderDetailsDto {
     private Long user;
     private LocalDate date;
     private Integer totalPrice;
+//    private Enum OrderStatusEnum;
     private List<OrderItemDto> items;
     private BillingFormDto billingFormDto;
 

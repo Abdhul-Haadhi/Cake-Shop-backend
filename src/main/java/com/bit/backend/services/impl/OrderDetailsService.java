@@ -1,10 +1,14 @@
 package com.bit.backend.services.impl;
 
 
+import com.bit.backend.dtos.BillingFormDto;
 import com.bit.backend.dtos.OrderDetailsDto;
+import com.bit.backend.dtos.OrderListDto;
+import com.bit.backend.dtos.ProductRegistrationDto;
 import com.bit.backend.entities.BillingFormEntity;
 import com.bit.backend.entities.OrderDetailsEntity;
 import com.bit.backend.entities.OrderSummaryEntity;
+import com.bit.backend.entities.ProductRegistrationEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.BillingFormMapper;
 import com.bit.backend.mappers.OrderDetailsMapper;
@@ -14,7 +18,10 @@ import com.bit.backend.repositories.OrderSummaryRepository;
 import com.bit.backend.services.OrderDetailsServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,12 +44,24 @@ public class OrderDetailsService implements OrderDetailsServiceI {
     }
 
     @Override
-    public OrderDetailsDto addOrderDetailsEntity(OrderDetailsDto orderDetailsDto) {
+    public OrderDetailsDto addOrderDetailsEntity(OrderDetailsDto orderDetailsDto, MultipartFile file) {
         try {
             System.out.println("*******************************");
+
             OrderDetailsEntity orderDetailsEntity = orderDetailsMapper.toOrderDetailsEntity(orderDetailsDto);
+
             List<OrderSummaryEntity> orderSummaryEntityList = orderDetailsMapper.toOrderSummaryEntityList(orderDetailsDto.getItems());
-            BillingFormEntity billingFormEntity = orderDetailsMapper.toBillingFormEntity(orderDetailsDto);
+
+            BillingFormEntity billingFormEntity = orderDetailsMapper.toBillingFormEntity(orderDetailsDto.getBillingFormDto());
+
+            billingFormEntity.setReceipt(file.getBytes());
+            billingFormEntity.setReceiptName(file.getOriginalFilename());
+            billingFormEntity.setReceiptType(file.getContentType());
+
+            billingFormEntity.setDate(orderDetailsDto.getDate());
+            billingFormEntity.setUser(orderDetailsDto.getUser());
+
+            System.out.println(orderDetailsDto);
 
             OrderDetailsEntity savedOrderDetailsEntity = orderDetailsRepository.save(orderDetailsEntity);
 
@@ -53,6 +72,7 @@ public class OrderDetailsService implements OrderDetailsServiceI {
             billingFormEntity.setOrderId(savedOrderDetailsEntity.getId());
 
             List<OrderSummaryEntity> savedOrderSummaryEntityList = orderSummaryRepository.saveAll(orderSummaryEntityList);
+            System.out.println(billingFormEntity);
             BillingFormEntity savedBillingFormEntity = billingFormRepository.save(billingFormEntity);
 
             OrderDetailsDto savedOrderDetailsDto = this.orderDetailsMapper.toOrderDetailsDto(savedOrderDetailsEntity);
@@ -66,21 +86,58 @@ public class OrderDetailsService implements OrderDetailsServiceI {
     }
 
 //    @Override
+//    public BillingFormDto addBillingFormEntity(BillingFormDto billingFormDto) {
+//        try {
+//            BillingFormEntity billingFormEntity = orderDetailsMapper.toBillingFormEntity(billingFormDto);
+//            BillingFormEntity savedBillingFormEntity = billingFormRepository.save(billingFormEntity);
+//            BillingFormDto savedDto = orderDetailsMapper.toBillingFormDto(savedBillingFormEntity);
+//            return savedDto;
+//        }
+//        catch (Exception e) {
+//            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+
+//    @Override
 //    public OrderDetailsDto addOrderDetailsEntity(OrderDetailsDto orderDetailsDto) {
 //        return null;
 //    }
 
     @Override
-    public List<OrderDetailsDto> getData() {
-//        try {
-//            List<BillingFormEntity> billingFormEntityList = orderDetailsRepository.findAll();
-//            List<OrderDetailsDto> orderDetailsDtoList = billingFormMapper.toBillingFormDtoList(billingFormEntityList);
-//            return orderDetailsDtoList;
-//        }
-//        catch (Exception e) {
-//            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-        return null;
+    public List<OrderListDto> getItemListData() {
+        try {
+            List<Object[]> rows = orderDetailsRepository.findAllOrderDetailsRaw();
+            List<OrderListDto> orderListDtoList = new ArrayList<>();
+
+            for (Object[] row : rows) {
+                OrderListDto dto = new OrderListDto(
+                        ((Number) row[0]).intValue(),
+                        (String) row[1],
+                        (String) row[2],
+                        (String) row[3],
+                        (String) row[4],
+                        (String) row[5],
+                        String.valueOf(row[6])
+//                        (LocalDate) row[6]
+//                        (String) row[7]
+                );
+                orderListDtoList.add(dto);
+
+//                dto.setId(((Number) row[0]).longValue());
+//                dto.set((String) row[2]);
+//                dto.setCustomerName((String) row[1]);
+//                dto.setContactNumber((String) row[3]);
+//                dto.setEmail((String) row[4]);
+//                dto.setAddress((String) row[5]);
+//                dto.setDate(((Timestamp) row[6]).toLocalDateTime());
+//                orderDetailsDtoList.add(dto);
+            }
+            return orderListDtoList;
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
@@ -92,5 +149,6 @@ public class OrderDetailsService implements OrderDetailsServiceI {
     public OrderDetailsDto deleteOrderDetails(long id) {
         return null;
     }
+
 
 }

@@ -3,6 +3,7 @@ package com.bit.backend.controllers;
 
 import com.bit.backend.dtos.GrnAddedDto;
 import com.bit.backend.dtos.ItemRegistrationDto;
+import com.bit.backend.dtos.ItemReportDto;
 import com.bit.backend.dtos.StockDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.ItemRegistrationServiceI;
@@ -64,6 +65,17 @@ public class ItemRegistrationController {
         try {
             List<ItemRegistrationDto> itemRegistrationDtoList = itemRegistrationServiceI.getData();
             return ResponseEntity.ok(itemRegistrationDtoList);
+        }
+        catch (Exception e){
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/item-report")
+    public ResponseEntity<List<ItemReportDto>> getReportData(){
+        try {
+            List<ItemReportDto> reportData = itemRegistrationServiceI.getReportData();
+            return ResponseEntity.ok(reportData);
         }
         catch (Exception e){
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
