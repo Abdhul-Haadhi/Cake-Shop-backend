@@ -18,4 +18,6 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity
     )
     List<Object[]> findAllOrderDetailsRaw();
 
+    @Query(value = "SELECT ")
+
 }

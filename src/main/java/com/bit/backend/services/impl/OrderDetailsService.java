@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,6 +139,12 @@ public class OrderDetailsService implements OrderDetailsServiceI {
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public List<OrderListDto> filterByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        List<OrderDetailsEntity> entities = orderDetailsRepository.findAllByDateRange(startDate, endDate);
+        return orderDetailsMapper.toOrderDetailsDtoList(entities);
     }
 
     @Override
