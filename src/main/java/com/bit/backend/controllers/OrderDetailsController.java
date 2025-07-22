@@ -1,7 +1,7 @@
 package com.bit.backend.controllers;
 
 
-import com.bit.backend.dtos.BillingFormDto;
+
 import com.bit.backend.dtos.OrderDetailsDto;
 import com.bit.backend.dtos.OrderListDto;
 import com.bit.backend.entities.OrderDetailsEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -70,8 +70,8 @@ public class OrderDetailsController {
 
     @GetMapping("/order-list/filter")
     public ResponseEntity<List<OrderListDto>> filterByDate(
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
     ) {
         List<OrderListDto> dtos = orderDetailsServiceI.filterByDateRange(startDate, endDate);
         return ResponseEntity.ok(dtos);

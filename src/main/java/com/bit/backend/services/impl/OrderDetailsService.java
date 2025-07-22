@@ -106,9 +106,9 @@ public class OrderDetailsService implements OrderDetailsServiceI {
 //    }
 
     @Override
-    public List<OrderListDto> getItemListData() {
+    public List<OrderListDto> filterByDateRange(LocalDate startDate, LocalDate endDate) {
         try {
-            List<Object[]> rows = orderDetailsRepository.findAllOrderDetailsRaw();
+            List<Object[]> rows = orderDetailsRepository.findAllOrderDetailsRawByDateRange(startDate,endDate);
             List<OrderListDto> orderListDtoList = new ArrayList<>();
 
             for (Object[] row : rows) {
@@ -120,7 +120,7 @@ public class OrderDetailsService implements OrderDetailsServiceI {
                         (String) row[4],
                         (String) row[5],
                         String.valueOf(row[6])
-//                        (LocalDate) row[6]
+//                        (LocalDateTime) row[6]
 //                        (String) row[7]
                 );
                 orderListDtoList.add(dto);
@@ -142,10 +142,34 @@ public class OrderDetailsService implements OrderDetailsServiceI {
     }
 
     @Override
-    public List<OrderListDto> filterByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
-        List<OrderDetailsEntity> entities = orderDetailsRepository.findAllByDateRange(startDate, endDate);
-        return orderDetailsMapper.toOrderDetailsDtoList(entities);
+    public List<OrderListDto> getItemListData() {
+        try {
+            List<Object[]> rows = orderDetailsRepository.findAllOrderDetailsRaw();
+            List<OrderListDto> orderListDtoList = new ArrayList<>();
+
+            for (Object[] row : rows) {
+                OrderListDto dto = new OrderListDto(
+                        ((Number) row[0]).intValue(),
+                        (String) row[1],
+                        (String) row[2],
+                        (String) row[3],
+                        (String) row[4],
+                        (String) row[5],
+                        String.valueOf(row[6])
+                );
+                orderListDtoList.add(dto);
+            }
+            return orderListDtoList;
+        } catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+//    @Override
+//    public List<OrderListDto> filterByDateRange(LocalDate startDate, LocalDate endDate) {
+//        List<OrderDetailsEntity> entities = orderDetailsRepository.findAllByDateRange(startDate, endDate);
+//        return orderDetailsMapper.toOrderListDtoList(entities);
+//    }
 
     @Override
     public OrderDetailsDto updateOrderDetails(long id, OrderDetailsDto orderDetailsDto) {
@@ -156,6 +180,8 @@ public class OrderDetailsService implements OrderDetailsServiceI {
     public OrderDetailsDto deleteOrderDetails(long id) {
         return null;
     }
+
+
 
 
 }

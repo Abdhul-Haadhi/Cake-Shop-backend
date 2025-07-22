@@ -3,6 +3,7 @@ package com.bit.backend.mappers;
 import com.bit.backend.dtos.BillingFormDto;
 import com.bit.backend.dtos.OrderDetailsDto;
 import com.bit.backend.dtos.OrderItemDto;
+import com.bit.backend.dtos.OrderListDto;
 import com.bit.backend.entities.BillingFormEntity;
 import com.bit.backend.entities.OrderDetailsEntity;
 import com.bit.backend.entities.OrderSummaryEntity;
@@ -30,5 +31,5 @@ public interface OrderDetailsMapper {
     BillingFormDto toBillingFormDto(BillingFormEntity billingFormEntity);
     BillingFormEntity toBillingFormEntity(BillingFormDto billingFormDto);
     OrderDetailsDto toOrderDetailsDto(OrderDetailsEntity orderDetailsEntity);
-    List<OrderDetailsDto> toOrderDetailsDtoList(List<OrderDetailsEntity> orderDetailsEntityList);
+    List<OrderListDto> toOrderListDtoList(List<OrderDetailsEntity> orderDetailsEntityList);
 }
