@@ -2,6 +2,7 @@ package com.bit.backend.controllers;
 
 
 
+import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.OrderDetailsDto;
 import com.bit.backend.dtos.OrderListDto;
 import com.bit.backend.entities.OrderDetailsEntity;
@@ -75,5 +76,17 @@ public class OrderDetailsController {
     ) {
         List<OrderListDto> dtos = orderDetailsServiceI.filterByDateRange(startDate, endDate);
         return ResponseEntity.ok(dtos);
+    }
+
+    @PutMapping("/order-list/{orderId}/status")
+    public ResponseEntity<OrderListDto> updateOrderStatus(@PathVariable Integer orderId, @RequestBody OrderListDto orderListDto) {
+
+        try {
+            OrderListDto updatedDto = orderDetailsServiceI.updateOrderStatus(orderId, orderListDto.getStatus());
+            return ResponseEntity.ok(updatedDto);
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.bit.backend.dtos;
 
+import com.bit.backend.enums.OrderStatusEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -10,18 +11,19 @@ public class OrderDetailsDto {
     private Long user;
     private LocalDate date;
     private Integer totalPrice;
-//    private Enum OrderStatusEnum;
+    private OrderStatusEnum status;
     private List<OrderItemDto> items;
     private BillingFormDto billingFormDto;
 
     public OrderDetailsDto() {
     }
 
-    public OrderDetailsDto(long id, Long user, LocalDate date, Integer totalPrice, List<OrderItemDto> items, BillingFormDto billingFormDto) {
+    public OrderDetailsDto(long id, Long user, LocalDate date, Integer totalPrice, OrderStatusEnum status, List<OrderItemDto> items, BillingFormDto billingFormDto) {
         this.id = id;
         this.user = user;
         this.date = date;
         this.totalPrice = totalPrice;
+        this.status = status;
         this.items = items;
         this.billingFormDto = billingFormDto;
     }
@@ -56,6 +58,14 @@ public class OrderDetailsDto {
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public OrderStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatusEnum status) {
+        this.status = status;
     }
 
     public List<OrderItemDto> getItems() {

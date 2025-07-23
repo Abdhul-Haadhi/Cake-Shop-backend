@@ -1,20 +1,20 @@
 package com.bit.backend.dtos;
 
 public class OrderListDto {
-    private int orderId;
+    private Integer orderId;
     private String itemName;
     private String customerName;
     private String contactNumber;
     private String email;
     private String address;
     private String date;
-//    private String orderStatus;
+    private String status;
 
 
     public OrderListDto() {
     }
 
-    public OrderListDto(int orderId, String itemName, String customerName, String contactNumber, String email, String address, String date) {
+    public OrderListDto(Integer orderId, String itemName, String customerName, String contactNumber, String email, String address, String date, String status) {
         this.orderId = orderId;
         this.itemName = itemName;
         this.customerName = customerName;
@@ -22,13 +22,14 @@ public class OrderListDto {
         this.email = email;
         this.address = address;
         this.date = date;
+        this.status = status;
     }
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -78,5 +79,13 @@ public class OrderListDto {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

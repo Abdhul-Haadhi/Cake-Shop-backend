@@ -31,5 +31,8 @@ public interface OrderDetailsMapper {
     BillingFormDto toBillingFormDto(BillingFormEntity billingFormEntity);
     BillingFormEntity toBillingFormEntity(BillingFormDto billingFormDto);
     OrderDetailsDto toOrderDetailsDto(OrderDetailsEntity orderDetailsEntity);
+//    OrderDetailsEntity toOrderDetailsEntity(OrderDetailsDto orderDetailsDto);
     List<OrderListDto> toOrderListDtoList(List<OrderDetailsEntity> orderDetailsEntityList);
+
+    OrderListDto toOrderListDto(OrderDetailsEntity orderDetailsEntity);
 }

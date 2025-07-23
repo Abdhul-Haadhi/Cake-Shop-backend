@@ -9,6 +9,7 @@ import com.bit.backend.entities.BillingFormEntity;
 import com.bit.backend.entities.OrderDetailsEntity;
 import com.bit.backend.entities.OrderSummaryEntity;
 import com.bit.backend.entities.ProductRegistrationEntity;
+import com.bit.backend.enums.OrderStatusEnum;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.BillingFormMapper;
 import com.bit.backend.mappers.OrderDetailsMapper;
@@ -24,6 +25,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderDetailsService implements OrderDetailsServiceI {
@@ -50,6 +52,8 @@ public class OrderDetailsService implements OrderDetailsServiceI {
             System.out.println("*******************************");
 
             OrderDetailsEntity orderDetailsEntity = orderDetailsMapper.toOrderDetailsEntity(orderDetailsDto);
+
+            orderDetailsEntity.setStatus(OrderStatusEnum.Pending);
 
             List<OrderSummaryEntity> orderSummaryEntityList = orderDetailsMapper.toOrderSummaryEntityList(orderDetailsDto.getItems());
 
@@ -119,7 +123,8 @@ public class OrderDetailsService implements OrderDetailsServiceI {
                         (String) row[3],
                         (String) row[4],
                         (String) row[5],
-                        String.valueOf(row[6])
+                        String.valueOf(row[6]),
+                        (String) row[7]
 //                        (LocalDateTime) row[6]
 //                        (String) row[7]
                 );
@@ -155,7 +160,8 @@ public class OrderDetailsService implements OrderDetailsServiceI {
                         (String) row[3],
                         (String) row[4],
                         (String) row[5],
-                        String.valueOf(row[6])
+                        String.valueOf(row[6]),
+                        (String) row[7]
                 );
                 orderListDtoList.add(dto);
             }
@@ -172,8 +178,34 @@ public class OrderDetailsService implements OrderDetailsServiceI {
 //    }
 
     @Override
-    public OrderDetailsDto updateOrderDetails(long id, OrderDetailsDto orderDetailsDto) {
-        return null;
+    public OrderListDto updateOrderStatus(Integer orderId, String newStatus) {
+        try {
+            OrderDetailsEntity order = orderDetailsRepository.findById(Long.valueOf(orderId)).orElseThrow(() -> new RuntimeException("Order not found"));
+
+            order.setStatus(OrderStatusEnum.valueOf(newStatus));
+            OrderDetailsEntity updatedOrder = orderDetailsRepository.save(order);
+
+            OrderDetailsEntity updatedEntity = orderDetailsRepository.save(order);
+
+            OrderListDto updatedDto = orderDetailsMapper.toOrderListDto(updatedEntity);
+
+            return updatedDto;
+
+//            return new OrderListDto(
+//                    updatedOrder.getId().intValue(),
+//                    null, // itemName
+//                    null, // customerName
+//                    null, // contactNumber
+//                    null, // email
+//                    null, // address
+//                    updatedOrder.getDate().toString(),
+//                    updatedOrder.getStatus().toString()
+//            );
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @Override

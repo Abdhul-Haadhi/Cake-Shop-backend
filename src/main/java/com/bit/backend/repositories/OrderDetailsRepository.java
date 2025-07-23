@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity, Long> {
 
-    @Query(value = "SELECT o.id, s.item_name, b.customer_name, b.contact_number, b.Email, b.Address, o.date " +
+    @Query(value = "SELECT o.id, s.item_name, b.customer_name, b.contact_number, b.Email, b.Address, o.date, o.status " +
                     "FROM ems.order_detials AS o " +
                     "JOIN ems.order_summary as s on o.id = s.order_id " +
                     "JOIN ems.billing_table as b on o.id = b.order_id " +
@@ -21,7 +21,7 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity
     )
     List<Object[]> findAllOrderDetailsRaw();
 
-    @Query(value = "SELECT o.id, s.item_name, b.customer_name, b.contact_number, b.Email, b.Address, o.date " +
+    @Query(value = "SELECT o.id, s.item_name, b.customer_name, b.contact_number, b.Email, b.Address, o.date, o.status " +
             "FROM ems.order_detials AS o " +
             "JOIN ems.order_summary as s on o.id = s.order_id " +
             "JOIN ems.billing_table as b on o.id = b.order_id " +
