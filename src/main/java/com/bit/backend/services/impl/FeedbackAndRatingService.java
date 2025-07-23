@@ -1,7 +1,9 @@
 package com.bit.backend.services.impl;
 
+import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
 import com.bit.backend.dtos.FeedbackAndRatingDto;
+import com.bit.backend.entities.CustomerRegistrationEntity;
 import com.bit.backend.entities.EmployeeRegistrationEntity;
 import com.bit.backend.entities.FeedbackAndRatingEntity;
 import com.bit.backend.exceptions.AppException;
@@ -73,6 +75,22 @@ public class FeedbackAndRatingService implements FeedbackAndRatingServiceI {
             FeedbackAndRatingEntity feedbackAndRatingEntity = feedbackAndRatingRepository.save(newFeedbackAndRatingEntity);
             FeedbackAndRatingDto responseFeedbackAndRatingDto = feedbackAndRatingMapper.toFeedbackAndRatingDto(feedbackAndRatingEntity);
             return responseFeedbackAndRatingDto;
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public FeedbackAndRatingDto deleteFeedbackForm(long id) {
+        try {
+            Optional<FeedbackAndRatingEntity> optionalFeedbackAndRatingEntity = feedbackAndRatingRepository.findById(id);
+
+            if (!optionalFeedbackAndRatingEntity.isPresent()) {
+                throw new AppException("Feedback and Rating does not exists",HttpStatus.BAD_REQUEST);
+            }
+            feedbackAndRatingRepository.deleteById(id);
+            return feedbackAndRatingMapper.toFeedbackAndRatingDto(optionalFeedbackAndRatingEntity.get());
         }
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);

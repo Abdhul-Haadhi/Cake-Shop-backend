@@ -1,6 +1,7 @@
 package com.bit.backend.controllers;
 
 
+import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
 import com.bit.backend.dtos.FeedbackAndRatingDto;
 import com.bit.backend.exceptions.AppException;
@@ -59,5 +60,17 @@ public class FeedbackAndRatingController {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @DeleteMapping("/feedback-and-rating/{id}")
+    public ResponseEntity<FeedbackAndRatingDto> deleteFeedbackForm(@PathVariable Long id) {
+
+        try {
+            FeedbackAndRatingDto feedbackAndRatingDto = feedbackAndRatingServiceI.deleteFeedbackForm(id);
+            return ResponseEntity.ok(feedbackAndRatingDto);
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

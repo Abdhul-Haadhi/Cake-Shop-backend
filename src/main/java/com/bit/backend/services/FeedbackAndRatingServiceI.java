@@ -1,5 +1,6 @@
 package com.bit.backend.services;
 
+import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
 import com.bit.backend.dtos.FeedbackAndRatingDto;
 
@@ -9,4 +10,5 @@ public interface FeedbackAndRatingServiceI {
     FeedbackAndRatingDto addFeedbackAndRatingEntity(FeedbackAndRatingDto feedbackAndRatingDto);
     List<FeedbackAndRatingDto> getData();
     FeedbackAndRatingDto updateFeedbackAndRating(long id,FeedbackAndRatingDto feedbackAndRatingDto);
+    FeedbackAndRatingDto deleteFeedbackForm(long id);
 }
