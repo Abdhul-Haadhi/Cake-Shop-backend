@@ -148,8 +148,10 @@ public class UserService implements UserServiceI {
 
             if (signUpDto.password().length > 0) {
                 String decryptedPassword = RSADecryptor.decrypt(new String(signUpDto.password()));
-                if (!passwordEncoder.matches(CharBuffer.wrap(decryptedPassword), user.getPassword())) {
-                    user.setPassword(passwordEncoder.encode(CharBuffer.wrap(decryptedPassword)));
+                if (decryptedPassword != null && !decryptedPassword.equals("")) {
+                    if (!passwordEncoder.matches(CharBuffer.wrap(decryptedPassword), user.getPassword())) {
+                        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(decryptedPassword)));
+                    }
                 }
             }
 
