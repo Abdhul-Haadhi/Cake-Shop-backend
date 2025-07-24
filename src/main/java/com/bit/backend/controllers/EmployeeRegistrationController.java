@@ -2,8 +2,11 @@ package com.bit.backend.controllers;
 
 import com.bit.backend.dtos.CustomerRegistrationDto;
 import com.bit.backend.dtos.EmployeeRegistrationDto;
+import com.bit.backend.dtos.SignUpDto;
+import com.bit.backend.dtos.UserDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.EmployeeRegistrationServiceI;
+import com.bit.backend.services.UserServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +17,11 @@ import java.util.List;
 @RestController
 public class EmployeeRegistrationController {
     private final EmployeeRegistrationServiceI employeeRegistrationServiceI;
+    private final UserServiceI userServiceI;
 
-    public EmployeeRegistrationController(EmployeeRegistrationServiceI employeeRegistrationServiceI) {
+    public EmployeeRegistrationController(EmployeeRegistrationServiceI employeeRegistrationServiceI, UserServiceI userServiceI) {
         this.employeeRegistrationServiceI = employeeRegistrationServiceI;
+        this.userServiceI = userServiceI;
     }
 
     @PostMapping("/employee-registration")
@@ -72,5 +77,11 @@ public class EmployeeRegistrationController {
         catch (Exception e) {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/create-employee-login")
+    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) throws Exception {
+        UserDto user = userServiceI.register(signUpDto);
+        return ResponseEntity.created(URI.create("/create-employee-login/" + user.getId())).body(user);
     }
 }

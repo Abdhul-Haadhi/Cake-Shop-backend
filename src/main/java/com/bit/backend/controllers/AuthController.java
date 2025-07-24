@@ -30,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
+    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) throws Exception {
         UserDto user = userServiceI.register(signUpDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
@@ -57,4 +57,10 @@ public class AuthController {
 //    public ResponseEntity<List<Integer>> saveSystemPrivileges(@RequestBody SystemPrivilegeListDto systemPrivilegeListDto) {
 //        return ResponseEntity.ok(userServiceI.setSystemPrivileges(systemPrivilegeListDto));
 //    }
+
+    @GetMapping("/get-user-date/{role}/{id}")
+    public ResponseEntity<UserDto> getUserData(@PathVariable String role, @PathVariable Long id) {
+        UserDto user = userServiceI.getUserData(role, id);
+        return ResponseEntity.ok(user);
+    }
 }

@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface UserServiceI {
     UserDto login(CredentialsDto credentialsDto) throws Exception;
-    UserDto register(SignUpDto signUpDto);
+    UserDto register(SignUpDto signUpDto) throws Exception;
     List<Integer> getAuthIds(long userId);
     SystemPrivilegeListDto getSystemPrivileges();
     List<Integer> setSystemPrivileges(SystemPrivilegeListDto systemPrivilegeListDto);
+    UserDto getUserData(String role, Long id);
 }

@@ -47,7 +47,7 @@ public class UserService implements UserServiceI {
     }
 
     @Override
-    public UserDto register(SignUpDto signUpDto) {
+    public UserDto register(SignUpDto signUpDto) throws Exception {
         Optional<User> oUser = userRepository.findByLogin(signUpDto.login());
 
         if (oUser.isPresent()) {
@@ -55,7 +55,9 @@ public class UserService implements UserServiceI {
         }
         User user = userMapper.signUpToUser(signUpDto);
 
-        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
+        String decryptedPassword = RSADecryptor.decrypt(new String(signUpDto.password()));
+
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(decryptedPassword.toCharArray())));
         User savedUser = userRepository.save(user);
         return userMapper.toUserDto(savedUser);
     }
@@ -98,5 +100,22 @@ public class UserService implements UserServiceI {
     public List<Integer> setSystemPrivileges(SystemPrivilegeListDto systemPrivilegeListDto) {
 
         return null;
+    }
+
+    @Override
+    public UserDto getUserData(String role, Long id) {
+        try {
+            User user = null;
+            if (role.equals("EMPLOYEE")) {
+                user = userRepository.findByEmployeeId(id);
+            } else {
+                user = userRepository.findByCustomerId(id);
+            }
+
+            UserDto userDto = userMapper.toUserDto(user);
+            return userDto;
+        } catch (Exception e) {
+            throw new AppException("Error while getting user data", HttpStatus.BAD_REQUEST);
+        }
     }
 }
