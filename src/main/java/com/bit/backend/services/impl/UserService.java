@@ -118,4 +118,46 @@ public class UserService implements UserServiceI {
             throw new AppException("Error while getting user data", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @Override
+    public UserDto updateLoginDetails(Long id, SignUpDto signUpDto) {
+        try {
+            Optional<User> oUser = userRepository.findById(id);
+//            if (signUpDto.role().equals("EMPLOYEE")) {
+//                user = userRepository.findByEmployeeId(id);
+//            } else {
+//                user = userRepository.findByEmployeeId(id);
+//            }
+
+            if (!oUser.isPresent()) {
+                throw new AppException("Login user not found!", HttpStatus.BAD_REQUEST);
+            }
+
+            User user = oUser.get();
+
+            /*check if another user exists with the same user name*/
+            List<User> userList = userRepository.checkIfUserNameExistForOtherUsers(signUpDto.login(), user.getId());
+
+            if (userList.size() > 0) {
+                throw new AppException("User name already exists! Please try with different user name", HttpStatus.BAD_REQUEST);
+            }
+
+            user.setFirstName(signUpDto.firstName());
+            user.setLastName(signUpDto.lastName());
+            user.setLogin(signUpDto.login());
+
+            if (signUpDto.password().length > 0) {
+                String decryptedPassword = RSADecryptor.decrypt(new String(signUpDto.password()));
+                if (!passwordEncoder.matches(CharBuffer.wrap(decryptedPassword), user.getPassword())) {
+                    user.setPassword(passwordEncoder.encode(CharBuffer.wrap(decryptedPassword)));
+                }
+            }
+
+            User savedUser = userRepository.save(user);
+            return userMapper.toUserDto(savedUser);
+
+        } catch (Exception e) {
+            throw new AppException("Error while updating user data: " + e, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

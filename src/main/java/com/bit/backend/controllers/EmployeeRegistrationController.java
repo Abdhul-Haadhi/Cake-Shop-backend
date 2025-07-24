@@ -84,4 +84,10 @@ public class EmployeeRegistrationController {
         UserDto user = userServiceI.register(signUpDto);
         return ResponseEntity.created(URI.create("/create-employee-login/" + user.getId())).body(user);
     }
+
+    @PutMapping("/update-employee-login-details/{id}")
+        public ResponseEntity<UserDto> updateLoginDetails(@PathVariable Long id, @RequestBody SignUpDto signUpDto) throws Exception {
+        UserDto user = userServiceI.updateLoginDetails(id, signUpDto);
+        return ResponseEntity.created(URI.create("/create-employee-login/" + user.getId())).body(user);
+    }
 }
