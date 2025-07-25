@@ -39,7 +39,7 @@ public class StockService implements StockServiceI {
                 System.out.println(optionalStockEntity + "found");
                 StockEntity newEntity = optionalStockEntity.get();
 
-                int updatedQty = newEntity.getQty() + dto.getQty();
+                Double updatedQty = newEntity.getQty() + dto.getQty();
                 newEntity.setQty(updatedQty);
                 StockEntity savedItem = stockRepository.save(newEntity);
                 StockDto stockDto = stockMapper.toStockDto(savedItem);
@@ -53,16 +53,16 @@ public class StockService implements StockServiceI {
     public StockDto  updateStockEdit(GrnAddedDto grnAddedDto) {
 
         Optional<StockEntity> optionalStockEntity = stockRepository.findByItemIDo(grnAddedDto.getItemID());
-        Integer totalQty = grnAddedRepository.findSumOfQtyByItemId(grnAddedDto.getItemID());
+        Double totalQty = grnAddedRepository.findSumOfQtyByItemId(grnAddedDto.getItemID());
         if (totalQty == null) {
-            totalQty = 0;
+            totalQty = (double)0;
         }
         System.out.println(totalQty + " total quantity");
         StockEntity newEntity = null;
         if (optionalStockEntity.isPresent()) {
 //            System.out.println(optionalStockEntity.get().getId() + " " + optionalStockEntity.get().getStockItemName() + " found");
             newEntity = optionalStockEntity.get();
-            int updatedQty = totalQty;
+            Double updatedQty = totalQty;
             newEntity.setQty(updatedQty);
             stockRepository.save(newEntity);
         }

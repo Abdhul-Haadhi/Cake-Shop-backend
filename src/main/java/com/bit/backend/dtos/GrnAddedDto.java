@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class GrnAddedDto {
     private Long id;
     private Long grnno;
-    private int qty;
+    private Double qty;
     private BigDecimal ucost;
     private BigDecimal cost;
     private String item;
@@ -16,7 +16,7 @@ public class GrnAddedDto {
     public GrnAddedDto() {
     }
 
-    public GrnAddedDto(Long id, Long grnno, int qty, BigDecimal ucost, BigDecimal cost, String item, int itemID, LocalDate expdate) {
+    public GrnAddedDto(Long id, Long grnno, Double qty, BigDecimal ucost, BigDecimal cost, String item, int itemID, LocalDate expdate) {
         this.id = id;
         this.grnno = grnno;
         this.qty = qty;
@@ -43,11 +43,11 @@ public class GrnAddedDto {
         this.grnno = grnno;
     }
 
-    public int getQty() {
+    public Double getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(Double qty) {
         this.qty = qty;
     }
 

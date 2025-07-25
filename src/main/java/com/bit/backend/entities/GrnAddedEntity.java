@@ -23,7 +23,7 @@ public class GrnAddedEntity {
     private BigDecimal ucost;
 
     @Column(name = "qty")
-    private int qty;
+    private Double qty;
 
     @Column(name = "item")
     private String item;
@@ -37,7 +37,7 @@ public class GrnAddedEntity {
     public GrnAddedEntity() {
     }
 
-    public GrnAddedEntity(Long id, Long grnno, BigDecimal cost, BigDecimal ucost, int qty, String item, int itemID, LocalDate expdate) {
+    public GrnAddedEntity(Long id, Long grnno, BigDecimal cost, BigDecimal ucost, Double qty, String item, int itemID, LocalDate expdate) {
         this.id = id;
         this.grnno = grnno;
         this.cost = cost;
@@ -80,11 +80,11 @@ public class GrnAddedEntity {
         this.ucost = ucost;
     }
 
-    public int getQty() {
+    public Double getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(Double qty) {
         this.qty = qty;
     }
 

@@ -65,7 +65,7 @@ public class GrnService implements GrnServiceI {
 
         for (GrnAddedEntity grnAddedEntity : grnAddedEntityList) {
             Optional<StockEntity> optionalStockEntity = stockRepository.findByItemIDo(grnAddedEntity.getItemID());
-            int totalQty = Optional.ofNullable(grnAddedRepository.findSumOfQtyByItemId(grnAddedEntity.getItemID())).orElse(0);
+            Double totalQty = Optional.ofNullable(grnAddedRepository.findSumOfQtyByItemId(grnAddedEntity.getItemID())).orElse((double)0);
 
             System.out.println(totalQty + " total quantity");
 

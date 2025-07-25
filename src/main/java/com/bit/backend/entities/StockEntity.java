@@ -18,12 +18,12 @@ public class StockEntity {
     private String stockItemName;
 
     @Column(name = "qty")
-    private int qty;
+    private Double qty;
 
     public StockEntity() {
     }
 
-    public StockEntity(Long id, String stockItemID, String stockItemName, int qty) {
+    public StockEntity(Long id, String stockItemID, String stockItemName, Double qty) {
         this.id = id;
         this.stockItemID = stockItemID;
         this.stockItemName = stockItemName;
@@ -54,11 +54,11 @@ public class StockEntity {
         this.stockItemName = stockItemName;
     }
 
-    public int getQty() {
+    public Double getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(Double qty) {
         this.qty = qty;
     }
 }

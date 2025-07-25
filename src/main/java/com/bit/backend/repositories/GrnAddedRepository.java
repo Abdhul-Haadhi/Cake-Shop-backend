@@ -12,5 +12,5 @@ public interface GrnAddedRepository extends JpaRepository<GrnAddedEntity, Long> 
     List<GrnAddedEntity> findAllByGRNNO(@Param("grnno") long grnno);
 
     @Query(value = "SELECT SUM(qty) FROM ems.grn_added_table WHERE itemid = :itemId", nativeQuery = true)
-    Integer findSumOfQtyByItemId(@Param("itemId") int itemId);
+    Double findSumOfQtyByItemId(@Param("itemId") int itemId);
 }
