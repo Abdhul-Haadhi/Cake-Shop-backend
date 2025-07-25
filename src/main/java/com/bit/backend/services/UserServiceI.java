@@ -12,4 +12,5 @@ public interface UserServiceI {
     List<Integer> setSystemPrivileges(SystemPrivilegeListDto systemPrivilegeListDto);
     UserDto getUserData(String role, Long id);
     UserDto updateLoginDetails(Long id, SignUpDto signUpDto);
+    UserDto mainRegister(SignUpDto signUpDto) throws Exception;
 }

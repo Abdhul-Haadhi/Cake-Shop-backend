@@ -2,9 +2,11 @@ package com.bit.backend.services.impl;
 
 import com.bit.backend.config.RSADecryptor;
 import com.bit.backend.dtos.*;
+import com.bit.backend.entities.CustomerRegistrationEntity;
 import com.bit.backend.entities.User;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.UserMapper;
+import com.bit.backend.repositories.CustomerRegistrationRepository;
 import com.bit.backend.repositories.UserRepository;
 import com.bit.backend.services.UserServiceI;
 import jakarta.persistence.Tuple;
@@ -25,13 +27,16 @@ public class UserService implements UserServiceI {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final CustomerRegistrationRepository customerRegistrationRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper,
+                       CustomerRegistrationRepository customerRegistrationRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
+        this.customerRegistrationRepository = customerRegistrationRepository;
     }
 
     @Override
@@ -51,7 +56,7 @@ public class UserService implements UserServiceI {
         Optional<User> oUser = userRepository.findByLogin(signUpDto.login());
 
         if (oUser.isPresent()) {
-            throw new AppException("User Already Exists", HttpStatus.BAD_REQUEST);
+            throw new AppException("User Name Already Exists", HttpStatus.BAD_REQUEST);
         }
         User user = userMapper.signUpToUser(signUpDto);
 
@@ -161,5 +166,33 @@ public class UserService implements UserServiceI {
         } catch (Exception e) {
             throw new AppException("Error while updating user data: " + e, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @Override
+    public UserDto mainRegister(SignUpDto signUpDto) throws Exception {
+        Optional<User> oUser = userRepository.findByLogin(signUpDto.login());
+
+        if (oUser.isPresent()) {
+            throw new AppException("User Name Already Exists", HttpStatus.BAD_REQUEST);
+        }
+        User user = userMapper.signUpToUser(signUpDto);
+
+        String decryptedPassword = RSADecryptor.decrypt(new String(signUpDto.password()));
+
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(decryptedPassword.toCharArray())));
+        User savedUser = userRepository.save(user);
+
+        /* Add a customer on the system */
+        /* Customers who wish to become loyalty can later contact system administrator and save their details */
+
+        CustomerRegistrationEntity customerRegistrationEntity = new CustomerRegistrationEntity();
+        customerRegistrationEntity.setCustomerName(signUpDto.firstName() + " " + signUpDto.lastName());
+        CustomerRegistrationEntity savedCustomerRegEntity = customerRegistrationRepository.save(customerRegistrationEntity);
+
+        User updateUser = savedUser;
+        updateUser.setCustomerId(savedCustomerRegEntity.getId());
+        User finalUser = userRepository.save(updateUser);
+
+        return userMapper.toUserDto(finalUser);
     }
 }

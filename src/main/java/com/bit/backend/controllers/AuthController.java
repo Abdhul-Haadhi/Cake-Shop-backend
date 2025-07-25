@@ -36,6 +36,12 @@ public class AuthController {
         return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
     }
 
+    @PostMapping("/main-register")
+    public ResponseEntity<UserDto> mainRegister(@RequestBody SignUpDto signUpDto) throws Exception {
+        UserDto user = userServiceI.mainRegister(signUpDto);
+        return ResponseEntity.created(URI.create("/main-register/" + user.getId())).body(user);
+    }
+
     @GetMapping("/get-auth-ids/{id}")
     public ResponseEntity<List<Integer>> getAuthDetails(@PathVariable long id) {
         try {
