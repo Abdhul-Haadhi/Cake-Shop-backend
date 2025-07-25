@@ -3,6 +3,8 @@ package com.bit.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Prod_Reg")
 public class ProductRegistrationEntity {
@@ -34,6 +36,9 @@ public class ProductRegistrationEntity {
     @Column(name = "final_price")
     private String finalPrice;
 
+    @Column(name = "colors")
+    private String colors;
+
     //    @Column(name = "image", columnDefinition = "LONGBLOB")
     @Lob
     @Column(name = "image")
@@ -55,13 +60,14 @@ public class ProductRegistrationEntity {
     public ProductRegistrationEntity() {
     }
 
-    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String description, String finalPrice, byte[] image, String imageName, String imageType) {
+    public ProductRegistrationEntity(Long id, String productId, String product, String initialWeight, String description, String finalPrice, String colors, byte[] image, String imageName, String imageType) {
         this.id = id;
         this.productId = productId;
         this.product = product;
         this.initialWeight = initialWeight;
         this.description = description;
         this.finalPrice = finalPrice;
+        this.colors = colors;
         this.image = image;
         this.imageName = imageName;
         this.imageType = imageType;
@@ -113,6 +119,14 @@ public class ProductRegistrationEntity {
 
     public void setFinalPrice(String finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
     }
 
     //    public String getRequiredItems() {

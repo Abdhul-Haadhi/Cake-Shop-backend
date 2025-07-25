@@ -20,20 +20,32 @@ public class OrderSummaryEntity implements Serializable {
     private String itemName;
 
     @Column(name = "item_qty")
-    private int itemQty;
+    private String itemQty;
 
     @Column(name = "item_price")
-    private Double itemPrice;
+    private String itemPrice;
+
+    @Column(name = "selected_size")
+    private String size;
+
+    @Column(name = "selected_color")
+    private String color;
+
+    @Column(name = "customize_note")
+    private String customizeNote;
 
     public OrderSummaryEntity() {
     }
 
-    public OrderSummaryEntity(Long id, Long orderId, String itemName, int itemQty, Double itemPrice) {
+    public OrderSummaryEntity(Long id, Long orderId, String itemName, String itemQty, String itemPrice, String size, String color, String customizeNote) {
         this.id = id;
         this.orderId = orderId;
         this.itemName = itemName;
         this.itemQty = itemQty;
         this.itemPrice = itemPrice;
+        this.size = size;
+        this.color = color;
+        this.customizeNote = customizeNote;
     }
 
     public Long getId() {
@@ -60,19 +72,43 @@ public class OrderSummaryEntity implements Serializable {
         this.itemName = itemName;
     }
 
-    public int getItemQty() {
+    public String getItemQty() {
         return itemQty;
     }
 
-    public void setItemQty(int itemQty) {
+    public void setItemQty(String itemQty) {
         this.itemQty = itemQty;
     }
 
-    public Double getItemPrice() {
+    public String getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(Double itemPrice) {
+    public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getCustomizeNote() {
+        return customizeNote;
+    }
+
+    public void setCustomizeNote(String customizeNote) {
+        this.customizeNote = customizeNote;
     }
 }
