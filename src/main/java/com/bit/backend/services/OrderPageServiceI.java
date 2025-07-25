@@ -10,4 +10,5 @@ public interface OrderPageServiceI {
     List<OrderPageDto> getData();
     OrderPageDto updateOrderPage(long id,OrderPageDto orderPageDto);
     OrderPageDto deleteOrderPageForm(long id);
+    List<OrderPageDto> getOrderUserData(Long id);
 }

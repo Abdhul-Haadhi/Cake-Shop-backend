@@ -91,4 +91,16 @@ public class OrderPageService implements OrderPageServiceI {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    public List<OrderPageDto> getOrderUserData(Long id) {
+        try {
+            List<OrderPageEntity> orderPageEntityList = orderPageRepository.findByUser(Long.toString(id));
+            List<OrderPageDto> orderPageDtosList = orderPageMapper.toOrderPageDtoList(orderPageEntityList);
+            return orderPageDtosList;
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

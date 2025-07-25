@@ -71,4 +71,16 @@ public class OrderPageController {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/user-order-page/{id}")
+    public ResponseEntity<List<OrderPageDto>> getOrderUserData(@PathVariable Long id){
+
+        try {
+            List<OrderPageDto> orderPageDtoList = orderPageServiceI.getOrderUserData(id);
+            return ResponseEntity.ok(orderPageDtoList);
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
