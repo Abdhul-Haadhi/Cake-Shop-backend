@@ -30,13 +30,16 @@ public class OrderPageEntity {
     @Column(name = "price")
     private Integer price;
 
+    @Column(name = "color")
+    private String color;
+
     @Column(name = "product_id")
     private Integer productId;
 
     public OrderPageEntity() {
     }
 
-    public OrderPageEntity(Long id, String user, LocalDate date, String customizeNote, Integer quantity, Integer size, Integer price, Integer productId) {
+    public OrderPageEntity(Long id, String user, LocalDate date, String customizeNote, Integer quantity, Integer size, Integer price, String color, Integer productId) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -44,6 +47,7 @@ public class OrderPageEntity {
         this.quantity = quantity;
         this.size = size;
         this.price = price;
+        this.color = color;
         this.productId = productId;
     }
 
@@ -79,6 +83,14 @@ public class OrderPageEntity {
         this.customizeNote = customizeNote;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Integer getSize() {
         return size;
     }
@@ -95,12 +107,12 @@ public class OrderPageEntity {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public String getColor() {
+        return color;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Integer getProductId() {

@@ -124,7 +124,12 @@ public class OrderDetailsService implements OrderDetailsServiceI {
                         (String) row[4],
                         (String) row[5],
                         String.valueOf(row[6]),
-                        (String) row[7]
+                        (String) row[7],
+                        (String) row[8],
+                        (String) row[9],
+                        (String) row[10],
+                        (String) row[11],
+                        (String) row[12]
 //                        (LocalDateTime) row[6]
 //                        (String) row[7]
                 );
@@ -161,7 +166,12 @@ public class OrderDetailsService implements OrderDetailsServiceI {
                         (String) row[4],
                         (String) row[5],
                         String.valueOf(row[6]),
-                        (String) row[7]
+                        (String) row[7],
+                        (String) row[8],
+                        (String) row[9],
+                        (String) row[10],
+                        (String) row[11],
+                        (String) row[12]
                 );
                 orderListDtoList.add(dto);
             }

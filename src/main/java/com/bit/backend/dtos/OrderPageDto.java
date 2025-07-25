@@ -10,19 +10,21 @@ public class OrderPageDto {
     private String customizeNote;
     private Integer size;
     private Integer price;
+    private String color;
     private Integer quantity;
     private Integer productId;
 
     public OrderPageDto() {
     }
 
-    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, Integer size, Integer price, Integer quantity, Integer productId) {
+    public OrderPageDto(long id, String user, LocalDate date, String customizeNote, Integer size, Integer price, String color, Integer quantity, Integer productId) {
         this.id = id;
         this.user = user;
         this.date = date;
         this.customizeNote = customizeNote;
         this.size = size;
         this.price = price;
+        this.color = color;
         this.quantity = quantity;
         this.productId = productId;
     }
@@ -73,6 +75,14 @@ public class OrderPageDto {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Integer getQuantity() {

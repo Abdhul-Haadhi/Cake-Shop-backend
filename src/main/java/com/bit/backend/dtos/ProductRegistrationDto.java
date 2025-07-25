@@ -3,6 +3,8 @@ package com.bit.backend.dtos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Lob;
 
+import java.util.List;
+
 public class ProductRegistrationDto {
     private long id;
     private String productId;
@@ -13,6 +15,7 @@ public class ProductRegistrationDto {
 //    private Integer usedAmount;
     private String description;
     private Integer finalPrice;
+    private List<String> colors;
     //    private Integer totalCost;
 //    private Integer requiredItemsQuantities;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -26,13 +29,14 @@ public class ProductRegistrationDto {
     public ProductRegistrationDto() {
     }
 
-    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, String description, Integer finalPrice, byte[] image, String imageName, String imageType) {
+    public ProductRegistrationDto(long id, String productId, String product, Integer initialWeight, String description, Integer finalPrice, List<String> colors, byte[] image, String imageName, String imageType) {
         this.id = id;
         this.productId = productId;
         this.product = product;
         this.initialWeight = initialWeight;
         this.description = description;
         this.finalPrice = finalPrice;
+        this.colors = colors;
         this.image = image;
         this.imageName = imageName;
         this.imageType = imageType;
@@ -109,6 +113,14 @@ public class ProductRegistrationDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<String> colors) {
+        this.colors = colors;
     }
 
     public byte[] getImage() {
