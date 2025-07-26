@@ -114,8 +114,8 @@ public class ItemRegistrationController {
         }
     }
 
-    @PutMapping("/stockupdateEdit")
-    public ResponseEntity<StockDto> updateStockEdit(@RequestBody GrnAddedDto grnAddedDto) {
+    @PutMapping("/stockupdateEdit/{id}")
+    public ResponseEntity<StockDto> updateStockEdit(@PathVariable Long id, @RequestBody GrnAddedDto grnAddedDto) {
         try {
             StockDto stockDtolist = stockServiceI.updateStockEdit(grnAddedDto);
             return ResponseEntity.ok().body(stockDtolist);
