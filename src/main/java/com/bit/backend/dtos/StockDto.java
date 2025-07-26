@@ -1,7 +1,7 @@
 package com.bit.backend.dtos;
 
 public class StockDto {
-    private  Long id;
+    private Long id;
     private String stockItemID;
     private Double qty;
     private String stockItemName;

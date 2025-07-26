@@ -1,6 +1,7 @@
 package com.bit.backend.controllers;
 
 
+import com.bit.backend.dtos.GrnAddedDto;
 import com.bit.backend.dtos.GrnDto;
 import com.bit.backend.dtos.ItemRegistrationDto;
 import com.bit.backend.dtos.StockDto;
@@ -83,4 +84,14 @@ public class GrnController {
         GrnDto grnDto = grnServiceI.deleteOuterGrn(id);
         return ResponseEntity.ok(grnDto);
     }
+
+//    @PutMapping("/stockupdateEdit")
+//    public ResponseEntity<StockDto> updateStockEdit(@RequestBody GrnAddedDto grnAddedDto) {
+//        try {
+//            StockDto stockDtolist = stockServiceI.updateStockEdit(grnAddedDto);
+//            return ResponseEntity.ok().body(stockDtolist);
+//        } catch (Exception e) {
+//            throw new AppException(" PUT mapping Failed " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }
