@@ -3,9 +3,11 @@ package com.bit.backend.controllers;
 
 import com.bit.backend.dtos.GrnDto;
 import com.bit.backend.dtos.ItemRegistrationDto;
+import com.bit.backend.dtos.StockDto;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.services.GrnServiceI;
 import com.bit.backend.services.ItemRegistrationServiceI;
+import com.bit.backend.services.StockServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,12 @@ import java.util.List;
 public class GrnController {
 
     private final GrnServiceI grnServiceI;
+    private final StockServiceI stockServiceI;
     private final ItemRegistrationServiceI itemRegistrationServiceI;
 
-    public GrnController(GrnServiceI grnServiceI, ItemRegistrationServiceI itemRegistrationServiceI) {
+    public GrnController(GrnServiceI grnServiceI, StockServiceI stockServiceI, ItemRegistrationServiceI itemRegistrationServiceI) {
         this.grnServiceI = grnServiceI;
+        this.stockServiceI = stockServiceI;
         this.itemRegistrationServiceI = itemRegistrationServiceI;
     }
 
@@ -56,6 +60,16 @@ public class GrnController {
     public ResponseEntity<List<ItemRegistrationDto>> getItems(){
         List<ItemRegistrationDto> itemDtoList = itemRegistrationServiceI.getData();
         return ResponseEntity.ok().body(itemDtoList);
+    }
+
+    @GetMapping("/allStock")
+    public ResponseEntity<List<StockDto>> getStockDtos(){
+        try{
+            List<StockDto> stockDtoList = stockServiceI.getData();
+            return ResponseEntity.ok().body(stockDtoList);
+        } catch (Exception e) {
+            throw new AppException(" Get mapping Failed " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/outeredit/{id}")

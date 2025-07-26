@@ -5,10 +5,7 @@ import com.bit.backend.dtos.BillingFormDto;
 import com.bit.backend.dtos.OrderDetailsDto;
 import com.bit.backend.dtos.OrderListDto;
 import com.bit.backend.dtos.ProductRegistrationDto;
-import com.bit.backend.entities.BillingFormEntity;
-import com.bit.backend.entities.OrderDetailsEntity;
-import com.bit.backend.entities.OrderSummaryEntity;
-import com.bit.backend.entities.ProductRegistrationEntity;
+import com.bit.backend.entities.*;
 import com.bit.backend.enums.OrderStatusEnum;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.BillingFormMapper;
@@ -151,6 +148,12 @@ public class OrderDetailsService implements OrderDetailsServiceI {
         }
     }
 
+//    @Override
+//    public OrderListDto deleteOrderList(long id) {
+//        return null;
+//    }
+
+
     @Override
     public List<OrderListDto> getItemListData() {
         try {
@@ -218,10 +221,19 @@ public class OrderDetailsService implements OrderDetailsServiceI {
 
     }
 
-    @Override
-    public OrderDetailsDto deleteOrderDetails(long id) {
-        return null;
-    }
+//    @Override
+//    public OrderDetailsDto deleteOrderDetails(long id) {
+//        return null;
+//    }
+//
+//
+//    public void deleteOrderById(Long id) {
+//        try {
+//            orderDetailsRepository.deleteOrderDetailsById(id);
+//        } catch (Exception e) {
+//            throw new AppException("Failed to delete order with id " + id + ": " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 
 

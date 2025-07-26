@@ -15,9 +15,9 @@ public interface OrderDetailsServiceI {
 //    BillingFormDto addBillingFormEntity(BillingFormDto billingFormDto);
 //    List<OrderDetailsDto> getData();
     OrderListDto updateOrderStatus(Integer orderId, String status);
-    OrderDetailsDto deleteOrderDetails(long id);
+//    OrderDetailsDto deleteOrderDetails(long id);
     List<OrderListDto> getItemListData();
     List<OrderListDto> filterByDateRange(LocalDate startDate, LocalDate endDate);
-
+//    OrderListDto deleteOrderList(long id);
 //    OrderListDto editOrderListData(Integer orderId, OrderListDto dto);
 }
