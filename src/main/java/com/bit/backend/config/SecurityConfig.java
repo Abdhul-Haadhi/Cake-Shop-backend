@@ -26,7 +26,8 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // to handle csrf so you don't have to worry about session id
                 .authorizeHttpRequests((request) ->
-                        request.requestMatchers(HttpMethod.POST, "/login", "/register", "/main-register").permitAll()
+                        request.requestMatchers(HttpMethod.POST, "/login", "/register", "/main-register").permitAll().
+                                requestMatchers(HttpMethod.GET, "/featured-products").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
