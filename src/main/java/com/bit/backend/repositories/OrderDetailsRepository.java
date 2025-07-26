@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity, Long> {
 
@@ -46,4 +47,12 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity
             @Param("endDate") LocalDate endDate
     );
 
+    @Query(nativeQuery = true, value = "SELECT DATE_FORMAT(date, '%Y-%m') AS orderMonth, count(id) as cnt FROM `Order_detials` group by orderMonth order by orderMonth")
+    List<Map<String, Object>> getMonthlySales();
+
+    @Query(nativeQuery = true, value = "SELECT DATE_FORMAT(date, '%Y-%m') AS orderMonth, sum(total_price) as summation FROM `Order_detials` group by orderMonth order by orderMonth")
+    List<Map<String, Object>> getMonthlySalesIncome();
+
+    @Query(nativeQuery = true, value = "SELECT status as status, count(status) as cnt FROM `Order_detials` WHERE YEARWEEK(date, 1) = YEARWEEK(CURDATE(), 1) group by status")
+    List<Map<String, Object>> getNoOfOrdersPlaceThisWeekByStatus();
 }
