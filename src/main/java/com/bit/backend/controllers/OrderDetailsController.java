@@ -89,4 +89,11 @@ public class OrderDetailsController {
             throw new AppException("Request failed with error: " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @DeleteMapping("/order-list/{orderId}")
+//    public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
+//        orderDetailsServiceI.deleteOrderList(orderId);
+//        return ResponseEntity.ok("Order with ID " + orderId + " deleted successfully");
+//    }
+
 }

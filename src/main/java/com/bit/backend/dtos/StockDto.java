@@ -2,18 +2,20 @@ package com.bit.backend.dtos;
 
 public class StockDto {
     private  Long id;
-    private int stockItemID;
+    private String stockItemID;
     private Double qty;
     private String stockItemName;
+    private Double thresholdQty;
 
     public StockDto() {
     }
 
-    public StockDto(Long id, int stockItemID, Double qty, String stockItemName) {
+    public StockDto(Long id, String stockItemID, Double qty, String stockItemName, Double thresholdQty) {
         this.id = id;
         this.stockItemID = stockItemID;
         this.qty = qty;
         this.stockItemName = stockItemName;
+        this.thresholdQty = thresholdQty;
     }
 
     public Long getId() {
@@ -24,11 +26,11 @@ public class StockDto {
         this.id = id;
     }
 
-    public int getStockItemID() {
+    public String getStockItemID() {
         return stockItemID;
     }
 
-    public void setStockItemID(int stockItemID) {
+    public void setStockItemID(String stockItemID) {
         this.stockItemID = stockItemID;
     }
 
@@ -46,5 +48,13 @@ public class StockDto {
 
     public void setStockItemName(String stockItemName) {
         this.stockItemName = stockItemName;
+    }
+
+    public Double getThresholdQty() {
+        return thresholdQty;
+    }
+
+    public void setThresholdQty(Double thresholdQty) {
+        this.thresholdQty = thresholdQty;
     }
 }

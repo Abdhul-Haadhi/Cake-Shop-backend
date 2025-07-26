@@ -20,14 +20,18 @@ public class StockEntity {
     @Column(name = "qty")
     private Double qty;
 
+    @Column(name = "threshold_qty")
+    private Double thresholdQty;
+
     public StockEntity() {
     }
 
-    public StockEntity(Long id, String stockItemID, String stockItemName, Double qty) {
+    public StockEntity(Long id, String stockItemID, String stockItemName, Double qty, Double thresholdQty) {
         this.id = id;
         this.stockItemID = stockItemID;
         this.stockItemName = stockItemName;
         this.qty = qty;
+        this.thresholdQty = thresholdQty;
     }
 
     public Long getId() {
@@ -60,5 +64,13 @@ public class StockEntity {
 
     public void setQty(Double qty) {
         this.qty = qty;
+    }
+
+    public Double getThresholdQty() {
+        return thresholdQty;
+    }
+
+    public void setThresholdQty(Double thresholdQty) {
+        this.thresholdQty = thresholdQty;
     }
 }
