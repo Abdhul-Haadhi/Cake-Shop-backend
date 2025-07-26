@@ -123,4 +123,14 @@ public class ItemRegistrationController {
             throw new AppException(" PUT mapping Failed " + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/updateStockQty")
+    public ResponseEntity<StockDto> updateStockQty(@RequestBody StockDto stockDto) {
+        try {
+            StockDto stockDtolist = stockServiceI.updateStockQty(stockDto);
+            return ResponseEntity.ok().body(stockDtolist);
+        } catch (Exception e) {
+            throw new AppException(" PUT mapping Failed " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

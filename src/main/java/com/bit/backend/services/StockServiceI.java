@@ -13,4 +13,5 @@ public interface StockServiceI {
     StockDto getQty(long itemID);
     List<StockDto> updateStock(List<GrnAddedDto> grnAddedDto);
     StockDto updateStockEdit(GrnAddedDto grnAddedDto);
+    StockDto updateStockQty(StockDto stockDto);
 }

@@ -4,10 +4,12 @@ package com.bit.backend.services.impl;
 import com.bit.backend.dtos.GrnAddedDto;
 import com.bit.backend.dtos.StockDto;
 import com.bit.backend.entities.StockEntity;
+import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.StockMapper;
 import com.bit.backend.repositories.GrnAddedRepository;
 import com.bit.backend.repositories.StockRepository;
 import com.bit.backend.services.StockServiceI;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -69,6 +71,23 @@ public class StockService implements StockServiceI {
         StockEntity savedItem = stockRepository.save(newEntity);
         StockDto stockDto = stockMapper.toStockDto(savedItem);
         return stockDto;
+    }
+
+    @Override
+    public StockDto updateStockQty(StockDto stockDto) {
+        Optional<StockEntity> optionalStockEntity = stockRepository.findById(stockDto.getId());
+
+        if (!optionalStockEntity.isPresent()) {
+            throw new AppException("Stock not found", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        StockEntity newEntity = optionalStockEntity.get();
+        newEntity.setThresholdQty(stockDto.getThresholdQty());
+        stockRepository.save(newEntity);
+
+        StockEntity savedItem = stockRepository.save(newEntity);
+        StockDto savedStockDto = stockMapper.toStockDto(savedItem);
+        return savedStockDto;
     }
 
 
